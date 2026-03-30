@@ -13,8 +13,8 @@ import Photoshoots from "./pages/Photoshoots";
 import Contact from "./pages/Contact";
 import VehicleManagement from "./pages/VehicleManagement";
 
-
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />

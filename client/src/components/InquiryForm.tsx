@@ -5,6 +5,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { Send, CheckCircle } from "lucide-react";
+import { trpc } from "@/lib/trpc";
 
 interface InquiryFormProps {
   title?: string;
@@ -20,29 +21,43 @@ export default function InquiryForm({
   defaultService = "",
 }: InquiryFormProps) {
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
     phone: "",
     service: defaultService || serviceOptions[0],
   });
 
+  const submitLead = trpc.leads.submit.useMutation();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.phone) {
       toast.error("Please fill in all required fields.");
       return;
     }
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-      toast.success("Inquiry sent! We'll be in touch within 24 hours.");
-    }, 1200);
+
+    try {
+      const result = await submitLead.mutateAsync({
+        name: form.name,
+        phone: form.phone,
+        inquiryType: form.service,
+      });
+
+      if (result.success) {
+        setSubmitted(true);
+        toast.success(result.message);
+        setForm({ name: "", phone: "", service: defaultService || serviceOptions[0] });
+      } else {
+        toast.error(result.message);
+      }
+    } catch (error) {
+      console.error("Failed to submit inquiry:", error);
+      toast.error("Failed to submit inquiry. Please try again.");
+    }
   };
 
   if (submitted) {
@@ -126,10 +141,10 @@ export default function InquiryForm({
 
         <button
           type="submit"
-          disabled={loading}
+          disabled={submitLead.isPending}
           className="btn-gold w-full flex items-center justify-center gap-2 py-3 text-sm font-['Barlow_Condensed'] font-bold tracking-wide uppercase"
         >
-          {loading ? (
+          {submitLead.isPending ? (
             <span className="animate-spin w-4 h-4 border-2 border-black/30 border-t-black rounded-full" />
           ) : (
             <>

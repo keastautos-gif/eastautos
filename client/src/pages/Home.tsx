@@ -71,6 +71,7 @@ const featuredRentals = [
 ];
 
 export default function Home() {
+
   return (
     <div className="min-h-screen bg-[#080808] text-white overflow-x-hidden">
       <Navbar />
