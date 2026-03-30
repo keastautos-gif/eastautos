@@ -21,7 +21,7 @@ const featuredFleet = [
   {
     name: "Ferrari Roma",
     type: "Sports Car",
-    img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0462_5b55d064.WEBP",
     badge: "Available",
   },
   {
