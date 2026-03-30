@@ -7,3 +7,8 @@
 - [x] Update Homepage Buy section: replace "Browse Our Selection" / "View Available" with inquiry-based sourcing language
 - [x] Redesign Chauffeur page: feature Cadillac Escalade only, remove all other chauffeur vehicles and images
 - [x] Ensure site-wide consistency with inquiry-driven lead-generation positioning
+- [x] Integrate EA circular logo (black version) as primary header logo across all pages
+- [x] Set EA circular logo as favicon
+- [x] Add Eastautos script logo to footer as secondary branding element (removed — white-on-white JPG not usable on dark bg)
+- [x] Ensure logos are minimal, properly sized, and consistent with luxury design
+- [x] Switch from white EA circular logo to black version for better visibility in header and footer

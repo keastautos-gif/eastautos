@@ -44,10 +44,12 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <Link href="/">
-              <div className="flex items-center gap-2 group">
-                <div className="w-8 h-8 border border-[#D4AF37] flex items-center justify-center">
-                  <span className="text-[#D4AF37] font-['Barlow_Condensed'] font-900 text-sm tracking-widest">E</span>
-                </div>
+              <div className="flex items-center gap-2.5 group">
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/ea-circle-black_2f698de5.png"
+                  alt="Eastautos"
+                  className="w-9 h-9 rounded-full object-cover"
+                />
                 <span
                   className="font-['Barlow_Condensed'] font-extrabold text-xl tracking-[0.2em] uppercase text-white group-hover:text-[#D4AF37] transition-colors duration-300"
                 >

@@ -16,10 +16,12 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 border border-[#D4AF37] flex items-center justify-center">
-                  <span className="text-[#D4AF37] font-['Barlow_Condensed'] font-black text-sm tracking-widest">E</span>
-                </div>
+              <div className="flex items-center gap-2.5 mb-5">
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/ea-circle-black_2f698de5.png"
+                  alt="Eastautos"
+                  className="w-10 h-10 rounded-full object-cover"
+                />
                 <span className="font-['Barlow_Condensed'] font-extrabold text-xl tracking-[0.2em] uppercase text-white">
                   Eastautos
                 </span>
