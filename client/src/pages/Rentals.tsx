@@ -31,9 +31,9 @@ const featuredFleet = [
     badge: "Available",
   },
   {
-    name: "Rolls-Royce Ghost",
-    type: "Ultra Luxury Sedan",
-    img: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&q=80",
+    name: "Rolls-Royce Wraith",
+    type: "Ultra Luxury Coupe",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0464_8e7c5c83.jpeg",
     badge: "Available",
   },
 ];
