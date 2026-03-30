@@ -3,7 +3,7 @@
    Midnight Drive: deep black with gold accents
    ============================================================ */
 import { Link } from "wouter";
-import { Phone, Mail, MapPin, Instagram, Facebook, Youtube } from "lucide-react";
+import { Phone, Mail, MapPin, Instagram } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -29,14 +29,13 @@ export default function Footer() {
               Premium automotive experiences. Rentals, sales, trade-ins, chauffeur services, and professional photoshoots.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-9 h-9 border border-[#2a2a2a] flex items-center justify-center text-white/40 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-200">
+              <a 
+                href="https://instagram.com/eastautos.backup" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-9 h-9 border border-[#2a2a2a] flex items-center justify-center text-white/40 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-200"
+              >
                 <Instagram size={15} />
-              </a>
-              <a href="#" className="w-9 h-9 border border-[#2a2a2a] flex items-center justify-center text-white/40 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-200">
-                <Facebook size={15} />
-              </a>
-              <a href="#" className="w-9 h-9 border border-[#2a2a2a] flex items-center justify-center text-white/40 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-200">
-                <Youtube size={15} />
               </a>
             </div>
           </div>
@@ -51,6 +50,7 @@ export default function Footer() {
                 { label: "Sell / Trade-In", href: "/sell" },
                 { label: "Chauffeur Services", href: "/chauffeur" },
                 { label: "Photoshoots", href: "/photoshoots" },
+                { label: "Vehicle Management", href: "/vehicle-management" },
               ].map((item) => (
                 <li key={item.href}>
                   <Link href={item.href}>
@@ -68,7 +68,7 @@ export default function Footer() {
             <h4 className="font-['Barlow_Condensed'] font-bold text-sm tracking-[0.2em] uppercase text-[#D4AF37] mb-5">Company</h4>
             <ul className="space-y-3">
               {[
-                { label: "About Eastautos", href: "/contact" },
+                { label: "About Eastautos", href: "/" },
                 { label: "Contact Us", href: "/contact" },
                 { label: "Privacy Policy", href: "/contact" },
                 { label: "Terms of Service", href: "/contact" },
@@ -90,15 +90,19 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Phone size={14} className="text-[#D4AF37] mt-0.5 shrink-0" />
-                <span className="text-white/50 text-sm font-['Barlow']">+1 (800) EASTAUTOS</span>
+                <a href="tel:+19293866103" className="text-white/50 hover:text-[#D4AF37] text-sm font-['Barlow'] transition-colors">
+                  (929) 386-6103
+                </a>
               </li>
               <li className="flex items-start gap-3">
                 <Mail size={14} className="text-[#D4AF37] mt-0.5 shrink-0" />
-                <span className="text-white/50 text-sm font-['Barlow']">info@eastautos.com</span>
+                <a href="mailto:Eastautos@icloud.com" className="text-white/50 hover:text-[#D4AF37] text-sm font-['Barlow'] transition-colors">
+                  Eastautos@icloud.com
+                </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={14} className="text-[#D4AF37] mt-0.5 shrink-0" />
-                <span className="text-white/50 text-sm font-['Barlow']">Available by appointment</span>
+                <span className="text-white/50 text-sm font-['Barlow']">NY • LA • Miami • CT • NJ</span>
               </li>
             </ul>
           </div>

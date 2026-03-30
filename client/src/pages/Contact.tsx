@@ -13,29 +13,29 @@ const contactInfo = [
   {
     icon: Phone,
     label: "Phone",
-    value: "+1 (800) EASTAUTOS",
+    value: "(929) 386-6103",
     sub: "Mon–Sat, 9am–8pm",
-    href: "tel:+18003278286",
+    href: "tel:+19293866103",
   },
   {
     icon: Mail,
     label: "Email",
-    value: "info@eastautos.com",
+    value: "Eastautos@icloud.com",
     sub: "Response within 24 hours",
-    href: "mailto:info@eastautos.com",
+    href: "mailto:Eastautos@icloud.com",
   },
   {
     icon: MessageCircle,
     label: "WhatsApp",
     value: "Message Us Directly",
     sub: "Quick response guaranteed",
-    href: "#",
+    href: "https://wa.me/19293866103",
   },
   {
     icon: MapPin,
-    label: "Location",
-    value: "By Appointment Only",
-    sub: "We come to you",
+    label: "Service Areas",
+    value: "NY • LA • Miami • CT • NJ",
+    sub: "Nationwide delivery available",
     href: "#",
   },
 ];
@@ -134,13 +134,13 @@ export default function Contact() {
                 </p>
                 <div className="flex gap-3">
                   {[
-                    { icon: Instagram, label: "@eastautos" },
-                    { icon: Facebook, label: "Eastautos" },
-                    { icon: Youtube, label: "Eastautos TV" },
+                    { icon: Instagram, label: "@eastautos.backup", href: "https://instagram.com/eastautos.backup" },
                   ].map((social) => (
                     <a
                       key={social.label}
-                      href="#"
+                      href={social.href || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center gap-2 bg-[#0e0e0e] border border-[#1a1a1a] px-4 py-2.5 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-200 group"
                     >
                       <social.icon size={14} className="text-[#D4AF37]" />
@@ -148,7 +148,8 @@ export default function Contact() {
                         {social.label}
                       </span>
                     </a>
-                  ))}
+                  ))
+                }
                 </div>
               </div>
 

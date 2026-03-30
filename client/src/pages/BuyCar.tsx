@@ -14,28 +14,28 @@ const featuredCars = [
   {
     name: "Lamborghini Huracán EVO",
     year: "2023",
-    price: "$285,000",
+    price: "Contact for pricing",
     img: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80",
     badge: "Featured",
   },
   {
-    name: "Porsche 911 GT3 RS",
-    year: "2022",
-    price: "$220,000",
+    name: "Mercedes-AMG S580",
+    year: "2023",
+    price: "Contact for pricing",
     img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80",
-    badge: "Certified",
+    badge: "Available",
   },
   {
-    name: "Rolls-Royce Cullinan",
+    name: "Rolls-Royce Ghost",
     year: "2023",
-    price: "$380,000",
+    price: "Contact for pricing",
     img: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&q=80",
     badge: "Featured",
   },
   {
-    name: "Bentley Bentayga Speed",
-    year: "2023",
-    price: "$245,000",
+    name: "BMW M5 Competition",
+    year: "2022",
+    price: "Contact for pricing",
     img: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80",
     badge: "Available",
   },
@@ -191,12 +191,12 @@ export default function BuyCar() {
                 ))}
               </div>
               <div className="flex flex-wrap gap-3">
-                <a href="tel:+1-800-EASTAUTOS">
+                <a href="tel:+19293866103">
                   <button className="btn-gold text-sm px-6 py-3 flex items-center gap-2">
                     <Phone size={14} /> Call Now
                   </button>
                 </a>
-                <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/19293866103" target="_blank" rel="noopener noreferrer">
                   <button className="btn-outline-white text-sm px-6 py-3 flex items-center gap-2">
                     <MessageCircle size={14} /> Text Now
                   </button>

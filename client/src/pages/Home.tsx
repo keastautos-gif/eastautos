@@ -110,12 +110,12 @@ export default function Home() {
               Rent, buy, or sell premium and exotic vehicles through our private network. Limited availability. By appointment only.
             </p>
             <div className="flex flex-wrap gap-3 animate-fade-up-delay-4">
-              <a href="tel:+1-800-EASTAUTOS">
+              <a href="tel:+19293866103">
                 <button className="btn-gold flex items-center gap-2 text-sm px-7 py-3.5">
                   <Phone size={14} /> Call Now
                 </button>
               </a>
-              <a href="#inquiry">
+              <a href="https://wa.me/19293866103" target="_blank" rel="noopener noreferrer">
                 <button className="btn-outline-white flex items-center gap-2 text-sm px-7 py-3.5">
                   <MessageCircle size={14} /> Text Now
                 </button>
@@ -262,7 +262,7 @@ export default function Home() {
                 ))}
               </ul>
               <div className="flex flex-wrap gap-3">
-                <a href="tel:+1-800-EASTAUTOS">
+                <a href="tel:+19293866103">
                   <button className="btn-gold text-sm px-6 py-3 flex items-center gap-2">
                     <Phone size={14} /> Call Now
                   </button>
@@ -281,7 +281,7 @@ export default function Home() {
                 { value: "500+", label: "Vehicles in Network" },
                 { value: "24h", label: "Response Time" },
                 { value: "98%", label: "Client Satisfaction" },
-                { value: "10+", label: "Years Experience" },
+                { value: "4+", label: "Years in Business" },
               ].map((stat) => (
                 <div key={stat.label} className="bg-[#0e0e0e] border border-[#1a1a1a] p-6 text-center">
                   <div className="font-['Barlow_Condensed'] font-black text-3xl text-[#D4AF37] leading-none mb-1">
@@ -313,14 +313,14 @@ export default function Home() {
                   <Phone size={16} className="text-[#D4AF37]" />
                   <div>
                     <p className="text-white/70 font-['Barlow'] text-sm">Call or Text</p>
-                    <p className="font-['Barlow_Condensed'] font-bold text-white">+1 (800) EASTAUTOS</p>
+                    <p className="font-['Barlow_Condensed'] font-bold text-white">(929) 386-6103</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <MessageCircle size={16} className="text-[#D4AF37]" />
                   <div>
-                    <p className="text-white/70 font-['Barlow'] text-sm">WhatsApp</p>
-                    <p className="font-['Barlow_Condensed'] font-bold text-white">Message us directly</p>
+                    <p className="text-white/70 font-['Barlow'] text-sm">Email</p>
+                    <p className="font-['Barlow_Condensed'] font-bold text-white">Eastautos@icloud.com</p>
                   </div>
                 </div>
               </div>
@@ -331,6 +331,100 @@ export default function Home() {
                 subtitle="Response within 24 hours."
                 serviceOptions={["Rent a Vehicle", "Purchase Inquiry", "Sell / Trade-In", "Other"]}
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── ABOUT SECTION ── */}
+      <section className="py-20 bg-[#080808] border-t border-[#1a1a1a]">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="section-label mb-4">About Eastautos</p>
+              <h2 className="font-['Barlow_Condensed'] font-extrabold text-4xl lg:text-5xl uppercase text-white leading-tight mb-6">
+                Premium Access to<br />
+                <span className="text-[#D4AF37]">Luxury Vehicles</span>
+              </h2>
+              <p className="text-white/50 font-['Barlow'] text-sm leading-relaxed mb-6">
+                Since 2020, Eastautos has been the trusted broker for luxury and exotic vehicles across the United States. We provide exclusive access to a curated network of premium vehicles for rental, purchase, and trade-in opportunities.
+              </p>
+              <p className="text-white/50 font-['Barlow'] text-sm leading-relaxed mb-8">
+                Serving New York, Los Angeles, Miami, Connecticut, and New Jersey, we specialize in connecting serious clients with the vehicles they need — whether for special occasions, business, or investment.
+              </p>
+              <div className="space-y-3">
+                {[
+                  "Verified & inspected vehicles",
+                  "Nationwide delivery available",
+                  "Professional concierge service",
+                  "Transparent pricing & terms",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <CheckCircle size={14} className="text-[#D4AF37] shrink-0" />
+                    <span className="text-white/50 font-['Barlow'] text-sm">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-[#0e0e0e] border border-[#1a1a1a] p-8">
+              <div className="space-y-6">
+                <div>
+                  <p className="font-['Barlow_Condensed'] font-bold text-xs tracking-[0.15em] uppercase text-[#D4AF37] mb-2">Service Areas</p>
+                  <p className="text-white/70 font-['Barlow'] text-sm">New York • Los Angeles • Miami • Connecticut • New Jersey</p>
+                </div>
+                <div className="border-t border-[#1a1a1a] pt-6">
+                  <p className="font-['Barlow_Condensed'] font-bold text-xs tracking-[0.15em] uppercase text-[#D4AF37] mb-2">Follow Us</p>
+                  <a href="https://instagram.com/eastautos.backup" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-[#D4AF37] font-['Barlow'] text-sm transition-colors">
+                    @eastautos.backup
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── VEHICLE MANAGEMENT PROGRAM PREVIEW ── */}
+      <section className="py-20 bg-[#0a0a0a] border-t border-[#1a1a1a]">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-[#0e0e0e] border border-[#1a1a1a] p-12 lg:p-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <Lock size={16} className="text-[#D4AF37]" />
+                  <p className="font-['Barlow_Condensed'] font-bold text-xs tracking-[0.2em] uppercase text-[#D4AF37]">Premium Program</p>
+                </div>
+                <h2 className="font-['Barlow_Condensed'] font-extrabold text-3xl lg:text-4xl uppercase text-white leading-tight mb-4">
+                  Vehicle Management<br />
+                  <span className="text-[#D4AF37]">Program</span>
+                </h2>
+                <p className="text-white/50 font-['Barlow'] text-sm leading-relaxed mb-6">
+                  Earn income from your vehicle without managing bookings, clients, or operations. We handle everything while you receive consistent payouts.
+                </p>
+                <p className="text-white/40 font-['Barlow'] text-xs mb-8">Private program. Professional management. For serious vehicle owners only.</p>
+                <Link href="/vehicle-management">
+                  <button className="btn-gold text-sm px-8 py-3 flex items-center gap-2">
+                    Learn More <ArrowRight size={12} />
+                  </button>
+                </Link>
+              </div>
+              <div className="grid grid-cols-1 gap-4">
+                {[
+                  { step: "01", title: "Submit", desc: "Apply for the program" },
+                  { step: "02", title: "Manage", desc: "We handle operations" },
+                  { step: "03", title: "Earn", desc: "Receive monthly payouts" },
+                ].map((item) => (
+                  <div key={item.step} className="bg-[#151515] border border-[#2a2a2a] p-4">
+                    <div className="flex items-start gap-3">
+                      <span className="font-['Barlow_Condensed'] font-black text-2xl text-[#D4AF37]/30">{item.step}</span>
+                      <div>
+                        <h4 className="font-['Barlow_Condensed'] font-bold text-sm uppercase text-white mb-1">{item.title}</h4>
+                        <p className="text-white/40 font-['Barlow'] text-xs">{item.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

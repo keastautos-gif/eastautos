@@ -76,13 +76,13 @@ export default function Navbar() {
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-2">
               <a 
-                href="tel:+1-800-EASTAUTOS" 
+                href="tel:+19293866103" 
                 className="flex items-center gap-1.5 text-white/70 hover:text-[#D4AF37] transition-colors text-xs font-['Barlow_Condensed'] font-bold tracking-wider uppercase px-3 py-2 border border-transparent hover:border-[#D4AF37]/30"
               >
                 <Phone size={12} /> Call
               </a>
               <a 
-                href="https://wa.me/1234567890" 
+                href="https://wa.me/19293866103" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 text-white/70 hover:text-[#D4AF37] transition-colors text-xs font-['Barlow_Condensed'] font-bold tracking-wider uppercase px-3 py-2 border border-transparent hover:border-[#D4AF37]/30"
@@ -126,13 +126,13 @@ export default function Navbar() {
               ))}
               <div className="flex gap-2 mt-4">
                 <a 
-                  href="tel:+1-800-EASTAUTOS" 
+                  href="tel:+19293866103" 
                   className="flex-1 flex items-center justify-center gap-2 btn-outline-white text-sm py-3"
                 >
                   <Phone size={14} /> Call
                 </a>
                 <a 
-                  href="https://wa.me/1234567890" 
+                  href="https://wa.me/19293866103" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center gap-2 btn-outline-white text-sm py-3"

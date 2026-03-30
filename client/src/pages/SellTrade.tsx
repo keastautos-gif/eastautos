@@ -140,12 +140,12 @@ export default function SellTrade() {
                 ))}
               </div>
               <div className="flex flex-wrap gap-3">
-                <a href="tel:+1-800-EASTAUTOS">
+                <a href="tel:+19293866103">
                   <button className="btn-gold text-sm px-6 py-3 flex items-center gap-2">
                     <Phone size={14} /> Call Now
                   </button>
                 </a>
-                <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/19293866103" target="_blank" rel="noopener noreferrer">
                   <button className="btn-outline-white text-sm px-6 py-3 flex items-center gap-2">
                     <MessageCircle size={14} /> Text Now
                   </button>

@@ -13,27 +13,27 @@ const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjx
 
 const featuredFleet = [
   {
-    name: "Lamborghini Urus",
-    type: "Super SUV",
+    name: "Ferrari Roma",
+    type: "Sports Car",
+    img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80",
+    badge: "Available",
+  },
+  {
+    name: "Lamborghini Huracán EVO",
+    type: "Exotic Supercar",
     img: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80",
     badge: "Available",
   },
   {
-    name: "Porsche 911 Turbo S",
-    type: "Sports Car",
-    img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80",
-    badge: "Limited",
-  },
-  {
     name: "Rolls-Royce Ghost",
-    type: "Ultra Luxury",
+    type: "Ultra Luxury Sedan",
     img: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&q=80",
-    badge: "By Appointment",
+    badge: "Available",
   },
   {
-    name: "Bentley Continental GT",
-    type: "Grand Tourer",
-    img: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80",
+    name: "BMW M8 Comp Convertible",
+    type: "Luxury Convertible",
+    img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80",
     badge: "Available",
   },
 ];
@@ -160,12 +160,12 @@ export default function Rentals() {
                 ))}
               </div>
               <div className="flex flex-wrap gap-3">
-                <a href="tel:+1-800-EASTAUTOS">
+                <a href="tel:+19293866103">
                   <button className="btn-gold text-sm px-6 py-3 flex items-center gap-2">
                     <Phone size={14} /> Call Now
                   </button>
                 </a>
-                <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/19293866103" target="_blank" rel="noopener noreferrer">
                   <button className="btn-outline-white text-sm px-6 py-3 flex items-center gap-2">
                     <MessageCircle size={14} /> Text Now
                   </button>

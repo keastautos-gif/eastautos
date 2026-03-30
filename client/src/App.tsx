@@ -11,18 +11,22 @@ import SellTrade from "./pages/SellTrade";
 import Chauffeur from "./pages/Chauffeur";
 import Photoshoots from "./pages/Photoshoots";
 import Contact from "./pages/Contact";
+import VehicleManagement from "./pages/VehicleManagement";
+
 
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/rentals" component={Rentals} />
-      <Route path="/buy" component={BuyCar} />
-      <Route path="/sell" component={SellTrade} />
-      <Route path="/chauffeur" component={Chauffeur} />
-      <Route path="/photoshoots" component={Photoshoots} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/404" component={NotFound} />
+      <Route path={"/"} component={Home} />
+      <Route path={"/rentals"} component={Rentals} />
+      <Route path={"/buy"} component={BuyCar} />
+      <Route path={"/sell"} component={SellTrade} />
+      <Route path={"/chauffeur"} component={Chauffeur} />
+      <Route path={"/photoshoots"} component={Photoshoots} />
+      <Route path={"/contact"} component={Contact} />
+      <Route path={"/vehicle-management"} component={VehicleManagement} />
+      <Route path={"/404"} component={NotFound} />
+      {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>
   );
@@ -31,7 +35,9 @@ function Router() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="dark">
+      <ThemeProvider
+        defaultTheme="dark"
+      >
         <TooltipProvider>
           <Toaster />
           <Router />
