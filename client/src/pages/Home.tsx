@@ -26,9 +26,9 @@ const services = [
   {
     icon: Car,
     label: "Buy a Car",
-    headline: "Browse Our Selection",
-    description: "Curated inventory. Additional vehicles available upon request.",
-    cta: "View Available",
+    headline: "Source Your Vehicle",
+    description: "We find luxury vehicles through our private network. Tell us what you want.",
+    cta: "Submit Inquiry",
     href: "/buy",
     number: "02",
   },

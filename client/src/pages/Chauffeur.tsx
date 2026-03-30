@@ -1,13 +1,17 @@
 /* ============================================================
    EASTAUTOS — Chauffeur Services Page
-   Midnight Drive: premium chauffeur service + booking form
+   Escalade-only: premium chauffeur service + inquiry form
    ============================================================ */
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InquiryForm from "@/components/InquiryForm";
-import { CheckCircle, Plane, Building2, Heart, Star, Clock, Shield, UserCheck } from "lucide-react";
+import {
+  CheckCircle, Plane, Building2, Heart, Star, Clock, Shield,
+  Phone, MessageCircle,
+} from "lucide-react";
 
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/hero-chauffeur-j55ZWXLRn3gNqrZibTcnv7.webp";
+const ESCALADE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/escalade-chauffeur_85590344.jpg";
 
 const occasions = [
   {
@@ -23,7 +27,7 @@ const occasions = [
   {
     icon: Heart,
     title: "Weddings & Special Events",
-    desc: "Make your special day unforgettable with our luxury wedding car service.",
+    desc: "Make your special day unforgettable with our luxury chauffeur service.",
   },
   {
     icon: Star,
@@ -42,31 +46,13 @@ const occasions = [
   },
 ];
 
-const vehicles = [
-  {
-    name: "Mercedes-Benz S-Class",
-    desc: "The pinnacle of executive comfort. Rear entertainment, massage seats, and ambient lighting.",
-    img: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=800&q=80",
-  },
-  {
-    name: "Rolls-Royce Ghost",
-    desc: "The ultimate statement of arrival. Whisper-quiet cabin, starlight headliner, and bespoke interiors.",
-    img: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80",
-  },
-  {
-    name: "Cadillac Escalade ESV",
-    desc: "Spacious luxury SUV for group transfers. Perfect for families and executive teams.",
-    img: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&q=80",
-  },
-];
-
 export default function Chauffeur() {
   return (
     <div className="min-h-screen bg-[#080808] text-white overflow-x-hidden">
       <Navbar />
 
       {/* ── PAGE HERO ── */}
-      <section className="relative h-[65vh] min-h-[450px] flex items-end pb-16 overflow-hidden">
+      <section className="relative h-[55vh] min-h-[350px] flex items-end pb-16 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${HERO_IMG})` }}
@@ -74,19 +60,77 @@ export default function Chauffeur() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/50 to-[#080808]/10" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/80 via-transparent to-transparent" />
         <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <p className="section-label mb-3 animate-fade-up-delay-1">White Glove Service</p>
-          <h1 className="font-['Barlow_Condensed'] font-black text-white uppercase leading-none animate-fade-up-delay-2"
-            style={{ fontSize: "clamp(3rem, 7vw, 6rem)" }}>
+          <p className="section-label mb-3">White Glove Service</p>
+          <h1
+            className="font-['Barlow_Condensed'] font-black text-white uppercase leading-none"
+            style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
+          >
             Chauffeur<br />Services
           </h1>
-          <p className="text-white/60 font-['Barlow'] text-base mt-3 max-w-lg animate-fade-up-delay-3">
-            Professional, discreet chauffeurs. Luxury vehicles. Impeccable service — every time.
+          <p className="text-white/60 font-['Barlow'] text-sm mt-3 max-w-lg">
+            Professional, discreet chauffeurs. Cadillac Escalade. Impeccable service — every time.
           </p>
         </div>
       </section>
 
+      {/* ── THE ESCALADE ── */}
+      <section className="py-20 lg:py-24 bg-[#080808]">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Image */}
+            <div className="relative overflow-hidden">
+              <img
+                src={ESCALADE_IMG}
+                alt="Cadillac Escalade ESV"
+                className="w-full h-auto object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/20 to-transparent" />
+            </div>
+
+            {/* Details */}
+            <div>
+              <p className="section-label mb-3">Our Vehicle</p>
+              <h2 className="font-['Barlow_Condensed'] font-extrabold text-4xl lg:text-5xl uppercase text-white leading-tight mb-4">
+                Cadillac<br />
+                <span className="text-[#D4AF37]">Escalade ESV</span>
+              </h2>
+              <p className="text-white/50 font-['Barlow'] text-sm leading-relaxed mb-6">
+                Our chauffeur fleet is built around the Cadillac Escalade ESV — the definitive luxury SUV for professional transport. Spacious, commanding, and equipped with every comfort for executives, families, and VIP clients.
+              </p>
+              <div className="space-y-3 mb-8">
+                {[
+                  "Spacious cabin for up to 7 passengers",
+                  "Premium leather interior with climate control",
+                  "Tinted privacy glass throughout",
+                  "Complimentary water & refreshments",
+                  "USB charging & Wi-Fi available",
+                  "Professional, uniformed chauffeur",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <CheckCircle size={14} className="text-[#D4AF37] shrink-0" />
+                    <span className="text-white/50 font-['Barlow'] text-sm">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <a href="#inquiry">
+                  <button className="btn-gold text-sm px-7 py-3 flex items-center gap-2">
+                    Book Now
+                  </button>
+                </a>
+                <a href="https://wa.me/19293866103" target="_blank" rel="noopener noreferrer">
+                  <button className="btn-outline-white text-sm px-7 py-3 flex items-center gap-2">
+                    <MessageCircle size={14} /> Text Now
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── OCCASIONS ── */}
-      <section className="py-20 bg-[#080808]">
+      <section className="py-20 bg-[#0a0a0a] border-t border-[#1a1a1a]">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
             <p className="section-label mb-3">Every Occasion</p>
@@ -111,36 +155,6 @@ export default function Chauffeur() {
         </div>
       </section>
 
-      {/* ── VEHICLES ── */}
-      <section className="py-16 bg-[#0a0a0a] border-t border-[#1a1a1a]">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-10">
-            <p className="section-label mb-3">Our Fleet</p>
-            <h2 className="font-['Barlow_Condensed'] font-extrabold text-3xl lg:text-4xl uppercase text-white">
-              Chauffeur Vehicles
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {vehicles.map((v) => (
-              <div key={v.name} className="card-hover bg-[#0e0e0e] overflow-hidden group">
-                <div className="relative h-44 overflow-hidden">
-                  <img
-                    src={v.img}
-                    alt={v.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />
-                </div>
-                <div className="p-6">
-                  <h3 className="font-['Barlow_Condensed'] font-extrabold text-lg uppercase text-white mb-2">{v.name}</h3>
-                  <p className="text-white/40 font-['Barlow'] text-sm leading-relaxed">{v.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── CHAUFFEUR PROMISE ── */}
       <section className="py-20 bg-[#080808]">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -159,7 +173,6 @@ export default function Chauffeur() {
                   "Professionally trained & licensed chauffeurs",
                   "Real-time flight tracking for airport pickups",
                   "Meet & greet with name board service",
-                  "Complimentary water & refreshments",
                   "NDA available for high-profile clients",
                   "24/7 dispatch and support",
                 ].map((item) => (
@@ -202,8 +215,28 @@ export default function Chauffeur() {
                 <span className="text-[#D4AF37]">Private Driver</span>
               </h2>
               <p className="text-white/50 font-['Barlow'] text-sm leading-relaxed mb-8">
-                Tell us your occasion, date, and pickup details. We'll match you with the perfect vehicle and chauffeur.
+                Tell us your occasion, date, and pickup details. We'll confirm your Escalade and chauffeur within 2 hours.
               </p>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <Phone size={16} className="text-[#D4AF37]" />
+                  <div>
+                    <p className="text-white/70 font-['Barlow'] text-sm">Call or Text</p>
+                    <a href="tel:+19293866103" className="font-['Barlow_Condensed'] font-bold text-white hover:text-[#D4AF37] transition-colors">
+                      (929) 386-6103
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <MessageCircle size={16} className="text-[#D4AF37]" />
+                  <div>
+                    <p className="text-white/70 font-['Barlow'] text-sm">WhatsApp</p>
+                    <a href="https://wa.me/19293866103" target="_blank" rel="noopener noreferrer" className="font-['Barlow_Condensed'] font-bold text-white hover:text-[#D4AF37] transition-colors">
+                      Message Us Directly
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="bg-[#0e0e0e] border border-[#1a1a1a] p-8 lg:p-10">
               <InquiryForm

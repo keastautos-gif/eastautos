@@ -4,3 +4,6 @@
 - [x] Add 5-field sourcing form (name, phone, vehicle, budget, timeline)
 - [x] Add messaging that not all inventory is listed, users should submit inquiry
 - [x] Include Submit Inquiry and Text Now CTAs
+- [x] Update Homepage Buy section: replace "Browse Our Selection" / "View Available" with inquiry-based sourcing language
+- [x] Redesign Chauffeur page: feature Cadillac Escalade only, remove all other chauffeur vehicles and images
+- [x] Ensure site-wide consistency with inquiry-driven lead-generation positioning
