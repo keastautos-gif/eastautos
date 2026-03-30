@@ -34,7 +34,7 @@ const contactInfo = [
   {
     icon: MapPin,
     label: "Service Areas",
-    value: "NY • LA • Miami • CT • NJ",
+    value: "NY • CT • NJ • Miami • LA",
     sub: "Nationwide delivery available",
     href: "#",
   },

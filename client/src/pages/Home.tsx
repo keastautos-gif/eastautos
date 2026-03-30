@@ -352,7 +352,7 @@ export default function Home() {
                 Since 2020, Eastautos has been the trusted broker for luxury and exotic vehicles across the United States. We provide exclusive access to a curated network of premium vehicles for rental, purchase, and trade-in opportunities.
               </p>
               <p className="text-white/50 font-['Barlow'] text-sm leading-relaxed mb-8">
-                Serving New York, Los Angeles, Miami, Connecticut, and New Jersey, we specialize in connecting serious clients with the vehicles they need — whether for special occasions, business, or investment.
+                Serving New York, Connecticut, New Jersey, Miami, and Los Angeles, we specialize in connecting serious clients with the vehicles they need — whether for special occasions, business, or investment.
               </p>
               <div className="space-y-3">
                 {[
@@ -372,7 +372,7 @@ export default function Home() {
               <div className="space-y-6">
                 <div>
                   <p className="font-['Barlow_Condensed'] font-bold text-xs tracking-[0.15em] uppercase text-[#D4AF37] mb-2">Service Areas</p>
-                  <p className="text-white/70 font-['Barlow'] text-sm">New York • Los Angeles • Miami • Connecticut • New Jersey</p>
+                  <p className="text-white/70 font-['Barlow'] text-sm">New York • Connecticut • New Jersey • Miami • Los Angeles</p>
                 </div>
                 <div className="border-t border-[#1a1a1a] pt-6">
                   <p className="font-['Barlow_Condensed'] font-bold text-xs tracking-[0.15em] uppercase text-[#D4AF37] mb-2">Follow Us</p>

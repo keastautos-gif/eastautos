@@ -102,7 +102,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={14} className="text-[#D4AF37] mt-0.5 shrink-0" />
-                <span className="text-white/50 text-sm font-['Barlow']">NY • LA • Miami • CT • NJ</span>
+                <span className="text-white/50 text-sm font-['Barlow']">NY • CT • NJ • Miami • LA</span>
               </li>
             </ul>
           </div>
