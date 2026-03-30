@@ -36,6 +36,24 @@ const featuredFleet = [
     img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0465_50d524d1.WEBP",
     badge: "Available",
   },
+  {
+    name: "Mercedes-Benz S580",
+    type: "Ultra Luxury Sedan",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0469_9bbb10a8.WEBP",
+    badge: "Available",
+  },
+  {
+    name: "Cadillac Escalade 600",
+    type: "Premium Luxury SUV",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0468_40fd32e9.WEBP",
+    badge: "Available",
+  },
+  {
+    name: "Mercedes-Maybach GLS 600",
+    type: "Ultra Luxury SUV",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0194_c945f855.WEBP",
+    badge: "Available",
+  },
 ];
 
 export default function Rentals() {

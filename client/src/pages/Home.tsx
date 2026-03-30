@@ -57,15 +57,15 @@ const featuredRentals = [
     badge: "Available Now",
   },
   {
-    name: "Lamborghini Urus",
-    type: "Luxury Performance SUV",
-    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0466_0443fe8f.WEBP",
+    name: "Mercedes-Benz S580",
+    type: "Ultra Luxury Sedan",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0469_9bbb10a8.WEBP",
     badge: "Available Now",
   },
   {
-    name: "Porsche 911 Carrera 4",
-    type: "Sports Convertible",
-    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0465_50d524d1.WEBP",
+    name: "Mercedes-Maybach GLS 600",
+    type: "Ultra Luxury SUV",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0194_c945f855.WEBP",
     badge: "Available Now",
   },
 ];
