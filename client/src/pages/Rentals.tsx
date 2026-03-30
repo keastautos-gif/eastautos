@@ -27,7 +27,7 @@ const featuredFleet = [
   {
     name: "Lamborghini Urus",
     type: "Luxury Performance SUV",
-    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0466_0443fe8f.WEBP",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0466_82ad5183.WEBP",
     badge: "Available",
   },
   {
