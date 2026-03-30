@@ -1,11 +1,11 @@
 /* ============================================================
    EASTAUTOS — Navbar
    Midnight Drive: transparent → solid black on scroll
-   Gold accent on active/hover nav links
+   Direct contact CTAs (Call, Text, Inquire)
    ============================================================ */
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, Phone, MessageCircle } from "lucide-react";
 
 const navLinks = [
   { label: "Rent a Car", href: "/rentals" },
@@ -74,10 +74,24 @@ export default function Navbar() {
             </nav>
 
             {/* Desktop CTA */}
-            <div className="hidden lg:flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-2">
+              <a 
+                href="tel:+1-800-EASTAUTOS" 
+                className="flex items-center gap-1.5 text-white/70 hover:text-[#D4AF37] transition-colors text-xs font-['Barlow_Condensed'] font-bold tracking-wider uppercase px-3 py-2 border border-transparent hover:border-[#D4AF37]/30"
+              >
+                <Phone size={12} /> Call
+              </a>
+              <a 
+                href="https://wa.me/1234567890" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-white/70 hover:text-[#D4AF37] transition-colors text-xs font-['Barlow_Condensed'] font-bold tracking-wider uppercase px-3 py-2 border border-transparent hover:border-[#D4AF37]/30"
+              >
+                <MessageCircle size={12} /> Text
+              </a>
               <Link href="/contact">
                 <button className="btn-gold text-sm px-5 py-2.5">
-                  Get Access
+                  Inquire
                 </button>
               </Link>
             </div>
@@ -110,9 +124,25 @@ export default function Navbar() {
                   </span>
                 </Link>
               ))}
+              <div className="flex gap-2 mt-4">
+                <a 
+                  href="tel:+1-800-EASTAUTOS" 
+                  className="flex-1 flex items-center justify-center gap-2 btn-outline-white text-sm py-3"
+                >
+                  <Phone size={14} /> Call
+                </a>
+                <a 
+                  href="https://wa.me/1234567890" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 btn-outline-white text-sm py-3"
+                >
+                  <MessageCircle size={14} /> Text
+                </a>
+              </div>
               <Link href="/contact">
-                <button className="btn-gold w-full mt-4 text-sm py-3">
-                  Get Access
+                <button className="btn-gold w-full mt-2 text-sm py-3">
+                  Inquire
                 </button>
               </Link>
             </nav>
