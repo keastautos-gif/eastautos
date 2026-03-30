@@ -13,6 +13,12 @@ const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjx
 
 const featuredFleet = [
   {
+    name: "Corvette C8 E-Ray",
+    type: "American Supercar",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0341_f74bbf19.WEBP",
+    badge: "Available",
+  },
+  {
     name: "Ferrari Roma",
     type: "Sports Car",
     img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80",
@@ -28,12 +34,6 @@ const featuredFleet = [
     name: "Rolls-Royce Ghost",
     type: "Ultra Luxury Sedan",
     img: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&q=80",
-    badge: "Available",
-  },
-  {
-    name: "BMW M8 Comp Convertible",
-    type: "Luxury Convertible",
-    img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80",
     badge: "Available",
   },
 ];
