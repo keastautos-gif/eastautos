@@ -1,2 +1,6 @@
 - [x] Improve email notification format: remove HTML, use clean plain-text, mobile-friendly layout
 - [x] Add Twilio SMS notifications for instant text alerts on every new lead submission
+- [x] Redesign Buy a Car page: remove placeholder inventory, convert to inquiry-based vehicle sourcing layout
+- [x] Add 5-field sourcing form (name, phone, vehicle, budget, timeline)
+- [x] Add messaging that not all inventory is listed, users should submit inquiry
+- [x] Include Submit Inquiry and Text Now CTAs
