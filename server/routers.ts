@@ -5,6 +5,7 @@ import { publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
 import { createLead, getAllLeads } from "./db";
 import { notifyOwner } from "./_core/notification";
+import { sendSmsAlert } from "./sms";
 
 export const appRouter = router({
   system: systemRouter,
@@ -56,10 +57,15 @@ export const appRouter = router({
           }
           lines.push(`Submitted: ${new Date().toLocaleString("en-US", { timeZone: "America/New_York", dateStyle: "medium", timeStyle: "short" })}`);
 
+          // Send email notification
           await notifyOwner({
             title: `New Lead – ${input.inquiryType}`,
             content: lines.join("\n"),
           });
+
+          // Send SMS alert
+          const smsText = lines.join("\n");
+          await sendSmsAlert(smsText);
 
           return {
             success: true,

@@ -1,1 +1,2 @@
 - [x] Improve email notification format: remove HTML, use clean plain-text, mobile-friendly layout
+- [x] Add Twilio SMS notifications for instant text alerts on every new lead submission
