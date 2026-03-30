@@ -1,0 +1,1 @@
+- [x] Improve email notification format: remove HTML, use clean plain-text, mobile-friendly layout

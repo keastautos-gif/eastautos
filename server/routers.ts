@@ -40,20 +40,25 @@ export const appRouter = router({
             status: "new",
           });
 
-          // Send notification to owner
-          const emailContent = `
-            <h2>New Lead Submission</h2>
-            <p><strong>Name:</strong> ${input.name}</p>
-            <p><strong>Phone:</strong> ${input.phone}</p>
-            <p><strong>Inquiry Type:</strong> ${input.inquiryType}</p>
-            ${input.vehicleInterest ? `<p><strong>Vehicle Interest:</strong> ${input.vehicleInterest}</p>` : ""}
-            ${input.additionalInfo ? `<p><strong>Additional Info:</strong> ${input.additionalInfo}</p>` : ""}
-            <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
-          `;
+          // Send plain-text notification to owner
+          const lines: string[] = [
+            `New Lead – ${input.inquiryType}`,
+            "",
+            `Name: ${input.name}`,
+            `Phone: ${input.phone}`,
+            `Inquiry Type: ${input.inquiryType}`,
+          ];
+          if (input.vehicleInterest) {
+            lines.push(`Vehicle: ${input.vehicleInterest}`);
+          }
+          if (input.additionalInfo) {
+            lines.push(`Details: ${input.additionalInfo}`);
+          }
+          lines.push(`Submitted: ${new Date().toLocaleString("en-US", { timeZone: "America/New_York", dateStyle: "medium", timeStyle: "short" })}`);
 
           await notifyOwner({
-            title: `New Lead: ${input.name} - ${input.inquiryType}`,
-            content: emailContent,
+            title: `New Lead – ${input.inquiryType}`,
+            content: lines.join("\n"),
           });
 
           return {
