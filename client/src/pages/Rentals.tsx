@@ -25,15 +25,15 @@ const featuredFleet = [
     badge: "Available",
   },
   {
-    name: "Lamborghini Huracán EVO",
-    type: "Exotic Supercar",
-    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0463_9b5cf834.WEBP",
+    name: "Lamborghini Urus",
+    type: "Luxury Performance SUV",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0466_0443fe8f.WEBP",
     badge: "Available",
   },
   {
-    name: "Rolls-Royce Wraith",
-    type: "Ultra Luxury Coupe",
-    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0464_8e7c5c83.jpeg",
+    name: "Porsche 911 Carrera 4",
+    type: "Sports Convertible",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0465_50d524d1.WEBP",
     badge: "Available",
   },
 ];
@@ -71,7 +71,7 @@ export default function Rentals() {
             <h2 className="font-['Barlow_Condensed'] font-extrabold text-4xl lg:text-5xl uppercase text-white">
               Currently Available
             </h2>
-            <p className="text-white/40 font-['Barlow'] text-sm mt-3">Vehicles change frequently. Additional inventory available upon request.</p>
+            <p className="text-white/40 font-['Barlow'] text-sm mt-3">Featured vehicles from our curated network. Additional inventory available upon request through our concierge team.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

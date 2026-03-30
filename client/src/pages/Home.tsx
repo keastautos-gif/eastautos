@@ -45,27 +45,27 @@ const services = [
 
 const featuredRentals = [
   {
-    name: "Lamborghini Urus",
-    type: "Super SUV",
-    img: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=500&q=80",
+    name: "Corvette C8 E-Ray",
+    type: "American Supercar",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0341_f74bbf19.WEBP",
     badge: "Available Now",
   },
   {
-    name: "Porsche 911 Turbo S",
+    name: "Ferrari Roma",
     type: "Sports Car",
-    img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500&q=80",
-    badge: "Limited",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0462_5b55d064.WEBP",
+    badge: "Available Now",
   },
   {
-    name: "Rolls-Royce Ghost",
-    type: "Ultra Luxury",
-    img: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&q=80",
-    badge: "By Appointment",
+    name: "Lamborghini Urus",
+    type: "Luxury Performance SUV",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0466_0443fe8f.WEBP",
+    badge: "Available Now",
   },
   {
-    name: "Bentley Continental GT",
-    type: "Grand Tourer",
-    img: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500&q=80",
+    name: "Porsche 911 Carrera 4",
+    type: "Sports Convertible",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0465_50d524d1.WEBP",
     badge: "Available Now",
   },
 ];
