@@ -27,7 +27,7 @@ const featuredFleet = [
   {
     name: "Lamborghini Huracán EVO",
     type: "Exotic Supercar",
-    img: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0463_9b5cf834.WEBP",
     badge: "Available",
   },
   {
