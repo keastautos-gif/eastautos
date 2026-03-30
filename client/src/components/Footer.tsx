@@ -3,7 +3,7 @@
    Midnight Drive: deep black with gold accents
    ============================================================ */
 import { Link } from "wouter";
-import { Phone, Mail, MapPin, Instagram } from "lucide-react";
+import { Phone, MapPin, Instagram } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -95,9 +95,9 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Mail size={14} className="text-[#D4AF37] mt-0.5 shrink-0" />
-                <a href="mailto:Eastautos@icloud.com" className="text-white/50 hover:text-[#D4AF37] text-sm font-['Barlow'] transition-colors">
-                  Eastautos@icloud.com
+                <Instagram size={14} className="text-[#D4AF37] mt-0.5 shrink-0" />
+                <a href="https://instagram.com/eastautos.backup" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-[#D4AF37] text-sm font-['Barlow'] transition-colors">
+                  @eastautos.backup
                 </a>
               </li>
               <li className="flex items-start gap-3">

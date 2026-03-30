@@ -8,7 +8,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InquiryForm from "@/components/InquiryForm";
 import {
-  Car, Key, ArrowRightLeft, Phone, MessageCircle, ArrowRight, CheckCircle, Lock
+  Car, Key, ArrowRightLeft, Phone, MessageCircle, ArrowRight, CheckCircle, Lock, Instagram
 } from "lucide-react";
 
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/hero-main-3B8iiKNWwXHXND7j8ZHrRJ.webp";
@@ -317,10 +317,12 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <MessageCircle size={16} className="text-[#D4AF37]" />
+                  <Instagram size={16} className="text-[#D4AF37]" />
                   <div>
-                    <p className="text-white/70 font-['Barlow'] text-sm">Email</p>
-                    <p className="font-['Barlow_Condensed'] font-bold text-white">Eastautos@icloud.com</p>
+                    <p className="text-white/70 font-['Barlow'] text-sm">Instagram</p>
+                    <a href="https://instagram.com/eastautos.backup" target="_blank" rel="noopener noreferrer" className="font-['Barlow_Condensed'] font-bold text-white hover:text-[#D4AF37] transition-colors">
+                      @eastautos.backup
+                    </a>
                   </div>
                 </div>
               </div>

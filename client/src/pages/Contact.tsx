@@ -5,7 +5,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InquiryForm from "@/components/InquiryForm";
-import { Phone, Mail, MapPin, Clock, Instagram, Facebook, Youtube, MessageCircle } from "lucide-react";
+import { Phone, MapPin, Clock, Instagram, MessageCircle } from "lucide-react";
 
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/hero-main-3B8iiKNWwXHXND7j8ZHrRJ.webp";
 
@@ -18,18 +18,18 @@ const contactInfo = [
     href: "tel:+19293866103",
   },
   {
-    icon: Mail,
-    label: "Email",
-    value: "Eastautos@icloud.com",
-    sub: "Response within 24 hours",
-    href: "mailto:Eastautos@icloud.com",
-  },
-  {
     icon: MessageCircle,
     label: "WhatsApp",
     value: "Message Us Directly",
     sub: "Quick response guaranteed",
     href: "https://wa.me/19293866103",
+  },
+  {
+    icon: Instagram,
+    label: "Instagram",
+    value: "@eastautos.backup",
+    sub: "DM us anytime",
+    href: "https://instagram.com/eastautos.backup",
   },
   {
     icon: MapPin,
