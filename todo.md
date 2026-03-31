@@ -12,3 +12,6 @@
 - [x] Add Eastautos script logo to footer as secondary branding element (removed — white-on-white JPG not usable on dark bg)
 - [x] Ensure logos are minimal, properly sized, and consistent with luxury design
 - [x] Switch from white EA circular logo to black version for better visibility in header and footer
+- [x] Clean up hero image: remove horizontal light streaks/reflections across windshield area
+- [x] Remove ticker tape text overlay ("LUXURY AUTOMOTIVE PREMIUM ACCESS") from hero section
+- [x] Ensure hero looks smooth, balanced, and premium on both desktop and mobile

@@ -11,7 +11,7 @@ import {
   Car, Key, ArrowRightLeft, Phone, MessageCircle, ArrowRight, CheckCircle, Lock, Instagram
 } from "lucide-react";
 
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/hero-main-3B8iiKNWwXHXND7j8ZHrRJ.webp";
+const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/hero-cleaned_99f685c2.png";
 
 const services = [
   {
@@ -85,16 +85,6 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/60 to-[#080808]/20" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/80 via-transparent to-transparent" />
 
-        {/* Ticker tape */}
-        <div className="absolute top-1/3 left-0 right-0 overflow-hidden py-3 border-y border-[#D4AF37]/20 rotate-[-1deg] scale-105">
-          <div className="ticker-track">
-            {Array(6).fill(null).map((_, i) => (
-              <span key={i} className="font-['Barlow_Condensed'] font-black text-[#D4AF37]/10 text-6xl tracking-[0.3em] uppercase mr-16 whitespace-nowrap">
-                EASTAUTOS &nbsp; LUXURY AUTOMOTIVE &nbsp; PREMIUM ACCESS &nbsp;
-              </span>
-            ))}
-          </div>
-        </div>
 
         <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="max-w-3xl">
