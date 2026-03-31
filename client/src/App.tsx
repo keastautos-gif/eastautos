@@ -12,6 +12,7 @@ import Chauffeur from "./pages/Chauffeur";
 import Photoshoots from "./pages/Photoshoots";
 import Contact from "./pages/Contact";
 import VehicleManagement from "./pages/VehicleManagement";
+import VehicleDetail from "./pages/VehicleDetail";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -19,6 +20,7 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/rentals"} component={Rentals} />
+      <Route path={"/rentals/:slug"} component={VehicleDetail} />
       <Route path={"/buy"} component={BuyCar} />
       <Route path={"/sell"} component={SellTrade} />
       <Route path={"/chauffeur"} component={Chauffeur} />

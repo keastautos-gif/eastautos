@@ -15,3 +15,8 @@
 - [x] Clean up hero image: remove horizontal light streaks/reflections across windshield area
 - [x] Remove ticker tape text overlay ("LUXURY AUTOMOTIVE PREMIUM ACCESS") from hero section
 - [x] Ensure hero looks smooth, balanced, and premium on both desktop and mobile
+- [x] Build premium vehicle detail page with image gallery/slider for rental cars
+- [x] Add vehicle descriptions, key specs/features (HP, seats, style, performance)
+- [x] Include strong CTAs: Book This Vehicle, Inquire Now, Text for Availability
+- [x] Wire routing from Rentals page cards to individual vehicle detail pages
+- [x] Ensure detail view is minimal, modern, and consistent with luxury design
