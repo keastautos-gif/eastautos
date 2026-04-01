@@ -111,6 +111,11 @@ export default function Home() {
                   <MessageCircle size={14} /> Text Now
                 </button>
               </a>
+              <a href="https://instagram.com/eastautos.backup" target="_blank" rel="noopener noreferrer">
+                <button className="btn-outline-white flex items-center gap-2 text-sm px-7 py-3.5">
+                  <Instagram size={14} /> Follow Us
+                </button>
+              </a>
             </div>
           </div>
         </div>
