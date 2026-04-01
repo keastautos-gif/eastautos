@@ -8,7 +8,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InquiryForm from "@/components/InquiryForm";
 import {
-  Car, Key, ArrowRightLeft, Phone, MessageCircle, ArrowRight, CheckCircle, Lock, Instagram
+  Car, Key, ArrowRightLeft, Phone, MessageCircle, ArrowRight, CheckCircle, ThumbsUp, Lock, Instagram
 } from "lucide-react";
 
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/hero-cleaned_99f685c2.png";
@@ -137,7 +137,7 @@ export default function Home() {
             </div>
             <div className="w-1 h-1 bg-[#080808]/30 rounded-full" />
             <div className="flex items-center gap-2">
-              <Lock size={14} />
+              <ThumbsUp size={14} />
               <span>Reliable Services</span>
             </div>
             <div className="w-1 h-1 bg-[#080808]/30 rounded-full" />
