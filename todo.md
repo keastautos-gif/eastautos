@@ -20,3 +20,8 @@
 - [x] Include strong CTAs: Book This Vehicle, Inquire Now, Text for Availability
 - [x] Wire routing from Rentals page cards to individual vehicle detail pages
 - [x] Ensure detail view is minimal, modern, and consistent with luxury design
+- [x] Fix scroll-to-top on page navigation (all pages should open at the top)
+- [x] Add chauffeur promo offer: "Book 3 hours, get the 4th hour free (first-time clients only)"
+- [x] Update Chauffeur page main image with real Escalade photos (exterior, interior, rear)
+- [x] Add Instagram section to footer: Follow us / DM us @eastautos.backup
+- [x] Add Call Now / Text Now / Follow Us or DM Us CTAs in footer Instagram section

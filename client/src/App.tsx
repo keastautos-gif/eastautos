@@ -13,6 +13,7 @@ import Photoshoots from "./pages/Photoshoots";
 import Contact from "./pages/Contact";
 import VehicleManagement from "./pages/VehicleManagement";
 import VehicleDetail from "./pages/VehicleDetail";
+import ScrollToTop from "./components/ScrollToTop";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -42,6 +43,7 @@ function App() {
       >
         <TooltipProvider>
           <Toaster />
+          <ScrollToTop />
           <Router />
         </TooltipProvider>
       </ThemeProvider>

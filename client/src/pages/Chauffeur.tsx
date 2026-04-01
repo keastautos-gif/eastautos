@@ -10,8 +10,9 @@ import {
   Phone, MessageCircle,
 } from "lucide-react";
 
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/hero-chauffeur-j55ZWXLRn3gNqrZibTcnv7.webp";
-const ESCALADE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/escalade-chauffeur_85590344.jpg";
+const ESCALADE_EXTERIOR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/escalade-real-exterior_f9d8c613.jpeg";
+const ESCALADE_REAR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/escalade-real-rear_02428248.jpeg";
+const ESCALADE_INTERIOR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/escalade-real-interior_8f921264.jpeg";
 
 const occasions = [
   {
@@ -55,7 +56,7 @@ export default function Chauffeur() {
       <section className="relative h-[55vh] min-h-[350px] flex items-end pb-16 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${HERO_IMG})` }}
+          style={{ backgroundImage: `url(${ESCALADE_EXTERIOR})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/50 to-[#080808]/10" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/80 via-transparent to-transparent" />
@@ -73,18 +74,47 @@ export default function Chauffeur() {
         </div>
       </section>
 
+      {/* ── PROMO BANNER ── */}
+      <section className="bg-[#D4AF37] py-4">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="font-['Barlow_Condensed'] font-bold text-[#080808] text-sm sm:text-base tracking-wide uppercase">
+            <span className="font-black text-base sm:text-lg">Limited Offer:</span>{" "}
+            Book 3 Hours, Get the 4th Hour Free
+            <span className="font-['Barlow'] font-normal text-[#080808]/70 text-xs sm:text-sm ml-2">— First-time clients only</span>
+          </p>
+        </div>
+      </section>
+
       {/* ── THE ESCALADE ── */}
       <section className="py-20 lg:py-24 bg-[#080808]">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Image */}
-            <div className="relative overflow-hidden">
-              <img
-                src={ESCALADE_IMG}
-                alt="Cadillac Escalade ESV"
-                className="w-full h-auto object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/20 to-transparent" />
+            {/* Image Gallery */}
+            <div className="space-y-3">
+              <div className="relative overflow-hidden">
+                <img
+                  src={ESCALADE_EXTERIOR}
+                  alt="Cadillac Escalade ESV — Exterior"
+                  className="w-full h-auto object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/10 to-transparent" />
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="relative overflow-hidden">
+                  <img
+                    src={ESCALADE_INTERIOR}
+                    alt="Cadillac Escalade ESV — Interior"
+                    className="w-full h-48 object-cover"
+                  />
+                </div>
+                <div className="relative overflow-hidden">
+                  <img
+                    src={ESCALADE_REAR}
+                    alt="Cadillac Escalade ESV — Rear"
+                    className="w-full h-48 object-cover"
+                  />
+                </div>
+              </div>
             </div>
 
             {/* Details */}
