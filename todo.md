@@ -27,3 +27,7 @@
 - [x] Add Call Now / Text Now / Follow Us or DM Us CTAs in footer Instagram section
 - [x] Add Instagram button next to "Text Now" in homepage hero section linking to @eastautos.backup
 - [x] Change "Confidential Process" to "Reliable Services" on homepage trust strip
+- [x] Move chauffeur promo "Book 3 hours, get the 4th hour free" under main heading or near primary CTA
+- [x] Add sticky/visible contact CTAs (Text Now, Call Now) on all pages without scrolling, mobile and desktop
+- [x] Combine Buy and Sell/Trade into one page with three sections: Buy | Trade | Sell
+- [x] Update navigation to reflect combined Buy/Trade/Sell page

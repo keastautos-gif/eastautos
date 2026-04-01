@@ -48,8 +48,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { label: "Rent a Car", href: "/rentals" },
-                { label: "Buy a Car", href: "/buy" },
-                { label: "Sell / Trade-In", href: "/sell" },
+                { label: "Buy | Trade | Sell", href: "/buy" },
                 { label: "Chauffeur Services", href: "/chauffeur" },
                 { label: "Photoshoots", href: "/photoshoots" },
                 { label: "Vehicle Management", href: "/vehicle-management" },

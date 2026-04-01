@@ -6,14 +6,14 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Rentals from "./pages/Rentals";
-import BuyCar from "./pages/BuyCar";
-import SellTrade from "./pages/SellTrade";
+import BuyTradeSell from "./pages/BuyTradeSell";
 import Chauffeur from "./pages/Chauffeur";
 import Photoshoots from "./pages/Photoshoots";
 import Contact from "./pages/Contact";
 import VehicleManagement from "./pages/VehicleManagement";
 import VehicleDetail from "./pages/VehicleDetail";
 import ScrollToTop from "./components/ScrollToTop";
+import StickyContactBar from "./components/StickyContactBar";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -22,8 +22,9 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/rentals"} component={Rentals} />
       <Route path={"/rentals/:slug"} component={VehicleDetail} />
-      <Route path={"/buy"} component={BuyCar} />
-      <Route path={"/sell"} component={SellTrade} />
+      <Route path={"/buy"} component={BuyTradeSell} />
+      <Route path={"/sell"} component={BuyTradeSell} />
+      <Route path={"/buy-trade-sell"} component={BuyTradeSell} />
       <Route path={"/chauffeur"} component={Chauffeur} />
       <Route path={"/photoshoots"} component={Photoshoots} />
       <Route path={"/contact"} component={Contact} />
@@ -45,6 +46,7 @@ function App() {
           <Toaster />
           <ScrollToTop />
           <Router />
+          <StickyContactBar />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

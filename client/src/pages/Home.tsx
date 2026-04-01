@@ -25,21 +25,12 @@ const services = [
   },
   {
     icon: Car,
-    label: "Buy a Car",
-    headline: "Source Your Vehicle",
-    description: "We find luxury vehicles through our private network. Tell us what you want.",
-    cta: "Submit Inquiry",
+    label: "Buy | Trade | Sell",
+    headline: "Source, Trade, or Sell",
+    description: "Buy through our network, trade up, or get a competitive cash offer. One seamless process.",
+    cta: "Get Started",
     href: "/buy",
     number: "02",
-  },
-  {
-    icon: ArrowRightLeft,
-    label: "Sell / Trade",
-    headline: "Get Your Valuation",
-    description: "Competitive offers in 24 hours. Fast, confidential process.",
-    cta: "Inquire Now",
-    href: "/sell",
-    number: "03",
   },
 ];
 
@@ -149,18 +140,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 3 SERVICE PILLARS ── */}
+      {/* ── SERVICE PILLARS ── */}
       <section className="py-24 lg:py-32 bg-[#080808]">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-16 max-w-xl">
             <p className="section-label mb-3">How It Works</p>
             <h2 className="font-['Barlow_Condensed'] font-extrabold text-4xl lg:text-6xl uppercase tracking-wide text-white leading-tight">
-              Three Ways to<br />
+              Two Ways to<br />
               <span className="text-[#D4AF37]">Get Access</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl">
             {services.map((svc) => (
               <div key={svc.number} className="card-hover bg-[#0e0e0e] border border-[#1a1a1a] p-8 group">
                 <div className="flex items-center gap-3 mb-4">

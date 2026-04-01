@@ -9,8 +9,7 @@ import { Menu, X, Phone, MessageCircle } from "lucide-react";
 
 const navLinks = [
   { label: "Rent a Car", href: "/rentals" },
-  { label: "Buy a Car", href: "/buy" },
-  { label: "Sell / Trade", href: "/sell" },
+  { label: "Buy | Trade | Sell", href: "/buy" },
   { label: "Chauffeur", href: "/chauffeur" },
   { label: "Photoshoots", href: "/photoshoots" },
   { label: "Contact", href: "/contact" },

@@ -71,17 +71,11 @@ export default function Chauffeur() {
           <p className="text-white/60 font-['Barlow'] text-sm mt-3 max-w-lg">
             Professional, discreet chauffeurs. Cadillac Escalade. Impeccable service — every time.
           </p>
-        </div>
-      </section>
-
-      {/* ── PROMO BANNER ── */}
-      <section className="bg-[#D4AF37] py-4">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="font-['Barlow_Condensed'] font-bold text-[#080808] text-sm sm:text-base tracking-wide uppercase">
-            <span className="font-black text-base sm:text-lg">Limited Offer:</span>{" "}
-            Book 3 Hours, Get the 4th Hour Free
-            <span className="font-['Barlow'] font-normal text-[#080808]/70 text-xs sm:text-sm ml-2">— First-time clients only</span>
-          </p>
+          <div className="mt-5 inline-flex items-center gap-2 bg-[#D4AF37] px-5 py-2.5">
+            <span className="font-['Barlow_Condensed'] font-black text-[#080808] text-sm sm:text-base tracking-wide uppercase">Limited Offer:</span>
+            <span className="font-['Barlow_Condensed'] font-bold text-[#080808] text-sm sm:text-base tracking-wide uppercase">Book 3 Hours, Get the 4th Hour Free</span>
+            <span className="font-['Barlow'] font-normal text-[#080808]/70 text-xs sm:text-sm">— First-time clients only</span>
+          </div>
         </div>
       </section>
 
