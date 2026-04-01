@@ -138,7 +138,7 @@ export default function Home() {
             <div className="w-1 h-1 bg-[#080808]/30 rounded-full" />
             <div className="flex items-center gap-2">
               <Lock size={14} />
-              <span>Confidential Process</span>
+              <span>Reliable Services</span>
             </div>
             <div className="w-1 h-1 bg-[#080808]/30 rounded-full" />
             <div className="flex items-center gap-2">

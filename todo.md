@@ -26,3 +26,4 @@
 - [x] Add Instagram section to footer: Follow us / DM us @eastautos.backup
 - [x] Add Call Now / Text Now / Follow Us or DM Us CTAs in footer Instagram section
 - [x] Add Instagram button next to "Text Now" in homepage hero section linking to @eastautos.backup
+- [x] Change "Confidential Process" to "Reliable Services" on homepage trust strip
