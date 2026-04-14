@@ -3,7 +3,7 @@
    Midnight Drive: deep black with gold accents
    ============================================================ */
 import { Link } from "wouter";
-import { Phone, MapPin, Instagram, MessageCircle } from "lucide-react";
+import { Phone, MapPin, Instagram } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -48,7 +48,8 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { label: "Rent a Car", href: "/rentals" },
-                { label: "Buy | Trade | Sell", href: "/buy" },
+                { label: "Buy a Car", href: "/buy" },
+                { label: "Sell / Trade-In", href: "/sell" },
                 { label: "Chauffeur Services", href: "/chauffeur" },
                 { label: "Photoshoots", href: "/photoshoots" },
                 { label: "Vehicle Management", href: "/vehicle-management" },
@@ -109,45 +110,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Connect with us */}
-        <div className="mt-14 pt-8 border-t border-[#1a1a1a]">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <Instagram size={18} className="text-[#D4AF37]" />
-              <span className="font-['Barlow_Condensed'] font-bold text-sm tracking-[0.15em] uppercase text-white">
-                Follow Us
-              </span>
-              <a
-                href="https://instagram.com/eastautos.backup"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#D4AF37] font-['Barlow'] text-sm hover:underline"
-              >
-                @eastautos.backup
-              </a>
-            </div>
-            <div className="flex flex-wrap items-center gap-3">
-              <a href="tel:+19293866103">
-                <button className="btn-gold text-xs px-5 py-2.5 flex items-center gap-2">
-                  <Phone size={12} /> Call Now
-                </button>
-              </a>
-              <a href="https://wa.me/19293866103" target="_blank" rel="noopener noreferrer">
-                <button className="btn-outline-white text-xs px-5 py-2.5 flex items-center gap-2">
-                  <MessageCircle size={12} /> Text Now
-                </button>
-              </a>
-              <a href="https://instagram.com/eastautos.backup" target="_blank" rel="noopener noreferrer">
-                <button className="btn-outline-white text-xs px-5 py-2.5 flex items-center gap-2">
-                  <Instagram size={12} /> DM Us
-                </button>
-              </a>
-            </div>
-          </div>
-        </div>
-
         {/* Bottom bar */}
-        <div className="mt-6 pt-6 border-t border-[#1a1a1a] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-14 pt-6 border-t border-[#1a1a1a] flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/30 text-xs font-['Barlow'] tracking-wider">
             © {new Date().getFullYear()} Eastautos. All rights reserved.
           </p>

@@ -8,10 +8,10 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InquiryForm from "@/components/InquiryForm";
 import {
-  Car, Key, ArrowRightLeft, Phone, MessageCircle, ArrowRight, CheckCircle, ThumbsUp, Lock, Instagram
+  Car, Key, ArrowRightLeft, Phone, MessageCircle, ArrowRight, CheckCircle, Lock, Instagram
 } from "lucide-react";
 
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/hero-cleaned_99f685c2.png";
+const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/hero-main-3B8iiKNWwXHXND7j8ZHrRJ.webp";
 
 const services = [
   {
@@ -25,12 +25,21 @@ const services = [
   },
   {
     icon: Car,
-    label: "Buy | Trade | Sell",
-    headline: "Source, Trade, or Sell",
-    description: "Buy through our network, trade up, or get a competitive cash offer. One seamless process.",
-    cta: "Get Started",
+    label: "Buy a Car",
+    headline: "Source Your Vehicle",
+    description: "We find luxury vehicles through our private network. Tell us what you want.",
+    cta: "Submit Inquiry",
     href: "/buy",
     number: "02",
+  },
+  {
+    icon: ArrowRightLeft,
+    label: "Sell / Trade",
+    headline: "Get Your Valuation",
+    description: "Competitive offers in 24 hours. Fast, confidential process.",
+    cta: "Inquire Now",
+    href: "/sell",
+    number: "03",
   },
 ];
 
@@ -76,6 +85,16 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/60 to-[#080808]/20" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/80 via-transparent to-transparent" />
 
+        {/* Ticker tape */}
+        <div className="absolute top-1/3 left-0 right-0 overflow-hidden py-3 border-y border-[#D4AF37]/20 rotate-[-1deg] scale-105">
+          <div className="ticker-track">
+            {Array(6).fill(null).map((_, i) => (
+              <span key={i} className="font-['Barlow_Condensed'] font-black text-[#D4AF37]/10 text-6xl tracking-[0.3em] uppercase mr-16 whitespace-nowrap">
+                EASTAUTOS &nbsp; LUXURY AUTOMOTIVE &nbsp; PREMIUM ACCESS &nbsp;
+              </span>
+            ))}
+          </div>
+        </div>
 
         <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="max-w-3xl">
@@ -102,11 +121,6 @@ export default function Home() {
                   <MessageCircle size={14} /> Text Now
                 </button>
               </a>
-              <a href="https://instagram.com/eastautos.backup" target="_blank" rel="noopener noreferrer">
-                <button className="btn-outline-white flex items-center gap-2 text-sm px-7 py-3.5">
-                  <Instagram size={14} /> Follow Us
-                </button>
-              </a>
             </div>
           </div>
         </div>
@@ -128,8 +142,8 @@ export default function Home() {
             </div>
             <div className="w-1 h-1 bg-[#080808]/30 rounded-full" />
             <div className="flex items-center gap-2">
-              <ThumbsUp size={14} />
-              <span>Reliable Services</span>
+              <Lock size={14} />
+              <span>Confidential Process</span>
             </div>
             <div className="w-1 h-1 bg-[#080808]/30 rounded-full" />
             <div className="flex items-center gap-2">
@@ -140,18 +154,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SERVICE PILLARS ── */}
+      {/* ── 3 SERVICE PILLARS ── */}
       <section className="py-24 lg:py-32 bg-[#080808]">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-16 max-w-xl">
             <p className="section-label mb-3">How It Works</p>
             <h2 className="font-['Barlow_Condensed'] font-extrabold text-4xl lg:text-6xl uppercase tracking-wide text-white leading-tight">
-              Two Ways to<br />
+              Three Ways to<br />
               <span className="text-[#D4AF37]">Get Access</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {services.map((svc) => (
               <div key={svc.number} className="card-hover bg-[#0e0e0e] border border-[#1a1a1a] p-8 group">
                 <div className="flex items-center gap-3 mb-4">

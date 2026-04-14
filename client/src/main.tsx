@@ -18,6 +18,9 @@ const redirectToLoginIfUnauthorized = (error: unknown) => {
 
   if (!isUnauthorized) return;
 
+  // Admin pages handle their own auth state; don't force-redirect
+  if (window.location.pathname.startsWith("/admin")) return;
+
   window.location.href = getLoginUrl();
 };
 

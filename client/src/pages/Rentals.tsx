@@ -1,16 +1,60 @@
 /* ============================================================
    EASTAUTOS — Rentals Page (Refined)
    Access-first: Limited featured fleet, inquiry-focused,
-   direct contact prioritization. Cards link to detail pages.
+   direct contact prioritization
    ============================================================ */
 import { Link } from "wouter";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InquiryForm from "@/components/InquiryForm";
-import { vehicles } from "@/data/vehicles";
 import { Phone, MessageCircle, ArrowRight, CheckCircle } from "lucide-react";
 
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/hero-rentals-gyjcZpNHvpKt2eUFsZr34P.webp";
+
+const featuredFleet = [
+  {
+    name: "Corvette C8 E-Ray",
+    type: "American Supercar",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0341_f74bbf19.WEBP",
+    badge: "Available",
+  },
+  {
+    name: "Ferrari Roma",
+    type: "Sports Car",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0462_5b55d064.WEBP",
+    badge: "Available",
+  },
+  {
+    name: "Lamborghini Urus",
+    type: "Luxury Performance SUV",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0466_82ad5183.WEBP",
+    badge: "Available",
+  },
+  {
+    name: "Porsche 911 Carrera 4",
+    type: "Sports Convertible",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0465_50d524d1.WEBP",
+    badge: "Available",
+  },
+  {
+    name: "Mercedes-Benz S580",
+    type: "Ultra Luxury Sedan",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0469_9bbb10a8.WEBP",
+    badge: "Available",
+  },
+  {
+    name: "Cadillac Escalade 600",
+    type: "Premium Luxury SUV",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0468_40fd32e9.WEBP",
+    badge: "Available",
+  },
+  {
+    name: "Mercedes-Maybach GLS 600",
+    type: "Ultra Luxury SUV",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0194_c945f855.WEBP",
+    badge: "Available",
+  },
+];
 
 export default function Rentals() {
   return (
@@ -45,33 +89,33 @@ export default function Rentals() {
             <h2 className="font-['Barlow_Condensed'] font-extrabold text-4xl lg:text-5xl uppercase text-white">
               Currently Available
             </h2>
-            <p className="text-white/40 font-['Barlow'] text-sm mt-3">Featured vehicles from our curated network. Click any vehicle for full details. Additional inventory available upon request.</p>
+            <p className="text-white/40 font-['Barlow'] text-sm mt-3">Featured vehicles from our curated network. Additional inventory available upon request through our concierge team.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {vehicles.map((car) => (
-              <Link key={car.slug} href={`/rentals/${car.slug}`}>
-                <div className="card-hover bg-[#0e0e0e] overflow-hidden group cursor-pointer">
-                  <div className="relative h-40 overflow-hidden">
-                    <img
-                      src={car.images[0]}
-                      alt={car.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />
-                    <span className="absolute top-2 right-2 bg-[#D4AF37] text-[#080808] font-['Barlow_Condensed'] font-bold text-[8px] tracking-widest uppercase px-2 py-1">
-                      {car.badge}
-                    </span>
-                  </div>
-                  <div className="p-4">
-                    <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase mb-1">{car.type}</p>
-                    <h4 className="font-['Barlow_Condensed'] font-bold text-sm uppercase text-white mb-3">{car.name}</h4>
-                    <span className="btn-gold text-xs px-3 py-2 flex items-center gap-1.5 w-full justify-center">
-                      View Details <ArrowRight size={10} />
-                    </span>
-                  </div>
+            {featuredFleet.map((car) => (
+              <div key={car.name} className="card-hover bg-[#0e0e0e] overflow-hidden group">
+                <div className="relative h-40 overflow-hidden">
+                  <img
+                    src={car.img}
+                    alt={car.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />
+                  <span className="absolute top-2 right-2 bg-[#D4AF37] text-[#080808] font-['Barlow_Condensed'] font-bold text-[8px] tracking-widest uppercase px-2 py-1">
+                    {car.badge}
+                  </span>
                 </div>
-              </Link>
+                <div className="p-4">
+                  <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase mb-1">{car.type}</p>
+                  <h4 className="font-['Barlow_Condensed'] font-bold text-sm uppercase text-white mb-3">{car.name}</h4>
+                  <a href="#inquiry">
+                    <button className="btn-gold text-xs px-3 py-2 flex items-center gap-1.5 w-full justify-center">
+                      Get Access <ArrowRight size={10} />
+                    </button>
+                  </a>
+                </div>
+              </div>
             ))}
           </div>
 
