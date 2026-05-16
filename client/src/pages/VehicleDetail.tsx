@@ -230,12 +230,7 @@ export default function VehicleDetail() {
                 >
                   {displayVehicle?.name}
                 </h1>
-                {/* Short specs line */}
-                {content.specs.length > 0 && (
-                  <p className="text-white/50 font-['Barlow'] text-sm">
-                    {content.specs.slice(0, 4).map((s) => s.value).join(" • ")}
-                  </p>
-                )}
+
               </div>
             </div>
 
@@ -390,14 +385,6 @@ export default function VehicleDetail() {
       <section ref={inquiryFormRef} className="py-24 bg-[#080808] border-t border-[#1a1a1a]">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto">
-            <div className="mb-10 text-center">
-              <h2 className="font-['Barlow_Condensed'] font-black text-3xl uppercase text-white mb-3">
-                Request Availability
-              </h2>
-              <p className="text-white/50 font-['Barlow'] text-sm">
-                Submit your inquiry and our team will confirm availability within 24 hours.
-              </p>
-            </div>
             <div className="bg-[#0e0e0e] border border-[#1a1a1a] p-8">
               <InquiryForm prefilledVehicle={displayVehicle?.name} />
             </div>

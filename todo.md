@@ -47,3 +47,5 @@
 - [x] Fix mobile header overlap: move brand/title/specs below breadcrumb, above pricing
 - [x] Fix hero image overlapping header on mobile: add top padding to push content below navbar
 - [x] Move "Available" badge above brand name but below breadcrumb
+- [x] Remove short specs line from under vehicle title on detail page (keep specs in dedicated section below)
+- [x] Remove duplicate "Request Availability" heading/subtitle above the inquiry form on vehicle detail page
