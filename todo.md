@@ -31,3 +31,6 @@
 - [x] Add sticky/visible contact CTAs (Text Now, Call Now) on all pages without scrolling, mobile and desktop
 - [x] Combine Buy and Sell/Trade into one page with three sections: Buy | Trade | Sell
 - [x] Update navigation to reflect combined Buy/Trade/Sell page
+- [x] Adjust mobile header spacing to prevent overlap with content
+- [x] Add manufacturer logos via Simple Icons CDN to vehicle detail pages
+- [x] Improve layout spacing on detail pages (breadcrumb, gallery, sidebar, inquiry form)

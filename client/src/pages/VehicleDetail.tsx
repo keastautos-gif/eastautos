@@ -93,7 +93,7 @@ export default function VehicleDetail() {
 
       {/* ── BREADCRUMB ── */}
       <div className="bg-[#0a0a0a] border-b border-[#1a1a1a]">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-3 mt-4">
           <nav className="flex items-center gap-2 text-sm font-['Barlow'] text-white/50">
             <Link href="/">
               <span className="hover:text-white/70 cursor-pointer">Home</span>
@@ -116,7 +116,7 @@ export default function VehicleDetail() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Gallery */}
             <div className="lg:col-span-2">
-              <div className="relative aspect-[16/10] bg-[#0e0e0e] overflow-hidden mb-3">
+              <div className="relative aspect-[16/10] bg-[#0e0e0e] overflow-hidden mb-4">
                 {photos.length > 0 && photos[activeImage] ? (
                   <img
                     src={photos[activeImage]}
@@ -156,7 +156,7 @@ export default function VehicleDetail() {
 
               {/* Thumbnails */}
               {photos && photos.length > 1 && (
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-4 gap-2 mt-4">
                   {photos.filter(Boolean).map((photo: string, i: number) => (
                     <button
                       key={i}
@@ -182,12 +182,22 @@ export default function VehicleDetail() {
             <div className="flex flex-col justify-between">
               <div>
                 {/* Brand & Category */}
-                <div className="mb-6">
-                  <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase mb-2">
-                    {displayVehicle?.brand || displayVehicle?.type}
-                  </p>
+                <div className="mb-8">
+                  <div className="flex items-center gap-2 mb-3">
+                    <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase">
+                      {displayVehicle?.brand || displayVehicle?.type}
+                    </p>
+                    {displayVehicle?.brand && (
+                      <img
+                        src={`https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${displayVehicle.brand.toLowerCase().replace(/\s+/g, '')}.svg`}
+                        alt={displayVehicle.brand}
+                        className="w-4 h-4 opacity-70"
+                        onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                      />
+                    )}
+                  </div>
                   <h1
-                    className="font-['Barlow_Condensed'] font-black text-white uppercase leading-none mb-3"
+                    className="font-['Barlow_Condensed'] font-black text-white uppercase leading-none mb-4"
                     style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
                   >
                     {displayVehicle?.name}
@@ -195,7 +205,7 @@ export default function VehicleDetail() {
                 </div>
 
                 {/* Status Badge */}
-                <div className="mb-6">
+                <div className="mb-8">
                   {displayVehicle?.status && (
                   <div
                     className={`inline-block px-3 py-1.5 rounded-sm text-xs font-['Barlow_Condensed'] font-bold tracking-wider uppercase border ${
@@ -240,7 +250,7 @@ export default function VehicleDetail() {
               </div>
 
               {/* Quick Contact */}
-              <div className="space-y-3">
+              <div className="space-y-3 pt-4">
                 <a href="tel:+19293866103" className="w-full">
                   <button className="btn-gold text-sm px-4 py-3 flex items-center justify-center gap-2 w-full">
                     <Phone size={14} /> Call Now
@@ -258,7 +268,7 @@ export default function VehicleDetail() {
       </section>
 
       {/* ── INQUIRY FORM ── */}
-      <section className="py-20 bg-[#0a0a0a] border-t border-[#1a1a1a]">
+      <section className="py-24 bg-[#0a0a0a] border-t border-[#1a1a1a]">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto">
             <div className="mb-10 text-center">
