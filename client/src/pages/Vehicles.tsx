@@ -96,11 +96,11 @@ function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
 
         {/* CTA Buttons */}
         <div className="flex gap-2">
-          <a href={`/contact?vehicle=${encodeURIComponent(vehicle.name)}`} className="flex-1">
+          <Link href={`/rentals/${vehicle.id}`} className="flex-1">
             <button className="btn-gold w-full text-xs px-3 py-2.5 flex items-center justify-center gap-1.5">
-              Inquire <ArrowRight size={10} />
+              View Details <ArrowRight size={12} />
             </button>
-          </a>
+          </Link>
           <a
             href="https://wa.me/19293866103"
             target="_blank"

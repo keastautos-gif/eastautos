@@ -29,7 +29,7 @@ import {
 } from "./db";
 import { notifyOwner } from "./_core/notification";
 import { sendSmsAlert } from "./sms";
-import { getAirtableVehicles } from "./airtable";
+import { getAirtableVehicles, getAirtableVehicleById } from "./airtable";
 import { createAirtableLead } from "./airtable-leads";
 
 export const appRouter = router({
@@ -427,6 +427,11 @@ export const appRouter = router({
     getAvailable: publicProcedure.query(async () => {
       return getAirtableVehicles();
     }),
+    getById: publicProcedure
+      .input(z.object({ id: z.string() }))
+      .query(async ({ input }) => {
+        return getAirtableVehicleById(input.id);
+      }),
   }),
 });
 

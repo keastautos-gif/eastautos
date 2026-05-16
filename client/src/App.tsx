@@ -24,6 +24,7 @@ function Router() {
       <Route path={"/rentals"} component={Rentals} />
       <Route path={"/rentals/:slug"} component={VehicleDetail} />
       <Route path={"/vehicles"} component={Vehicles} />
+      <Route path={"/vehicles/:id"} component={VehicleDetail} />
       <Route path={"/buy"} component={BuyTradeSell} />
       <Route path={"/sell"} component={BuyTradeSell} />
       <Route path={"/buy-trade-sell"} component={BuyTradeSell} />
