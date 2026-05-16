@@ -26,13 +26,12 @@ export default function Rentals() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/50 to-[#080808]/10" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/70 via-transparent to-transparent" />
         <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <p className="section-label mb-3">Our Inventory</p>
           <h1 className="font-['Barlow_Condensed'] font-black text-white uppercase leading-none"
             style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}>
-            Eastautos<br />Fleet
+            Browse Our<br />Collection
           </h1>
           <p className="text-white/60 font-['Barlow'] text-sm mt-3 max-w-lg">
-            Exclusive access to supercars, luxury sedans, and premium SUVs. Limited availability. By appointment only.
+            Explore luxury, exotic, and executive vehicles available through the Eastautos network. Submit an inquiry for availability, pricing, and scheduling.
           </p>
         </div>
       </section>
@@ -41,11 +40,11 @@ export default function Rentals() {
       <section className="py-20 bg-[#080808]">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
-            <p className="section-label mb-3">Featured Vehicles</p>
+            <p className="section-label mb-3">Curated Selection</p>
             <h2 className="font-['Barlow_Condensed'] font-extrabold text-4xl lg:text-5xl uppercase text-white">
-              Currently Available
+              Our Network
             </h2>
-            <p className="text-white/40 font-['Barlow'] text-sm mt-3">Featured vehicles from our curated network. Click any vehicle for full details. Additional inventory available upon request.</p>
+            <p className="text-white/40 font-['Barlow'] text-sm mt-3">Vehicles from our curated network. Click any vehicle for full details and to submit an inquiry. Additional inventory available upon request.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
