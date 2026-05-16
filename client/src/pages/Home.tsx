@@ -175,7 +175,7 @@ export default function Home() {
           ) : (
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {featuredVehicles.map((vehicle: any) => {
-                const mainImg = vehicle.images?.[0]?.url || vehicle.images?.[0];
+                const mainImg = vehicle.image || vehicle.images?.[0]?.url || vehicle.images?.[0];
                 const brand = (vehicle.brand || vehicle.manufacturer || "").trim();
                 return (
                   <Link key={vehicle.id} href={`/vehicles/${vehicle.id}`}>
@@ -255,11 +255,11 @@ export default function Home() {
                     <Phone size={14} /> Call Now
                   </button>
                 </a>
-                <a href="#inquiry">
+                <Link href="/contact">
                   <button className="btn-outline-white text-sm px-6 py-3">
                     Submit Inquiry
                   </button>
-                </a>
+                </Link>
               </div>
             </div>
 

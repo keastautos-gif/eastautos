@@ -65,3 +65,6 @@
 - [x] Fix CTA buttons: "View Vehicle" should route to detail page, "Request Availability" to inquiry form
 - [x] Remove scroll-to-section behavior from vehicle CTAs
 - [x] Verify all vehicle card routes work across homepage, Rent a Car, and Fleet pages
+- [x] Fix homepage vehicle images not loading (sync image format with Rent a Car page)
+- [x] Remove any remaining scroll-to-section CTA behavior on vehicle buttons
+- [x] Verify routing consistency across homepage, Fleet, and Rent a Car pages
