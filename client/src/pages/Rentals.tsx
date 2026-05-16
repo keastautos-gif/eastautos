@@ -12,8 +12,9 @@ import InquiryForm from "@/components/InquiryForm";
 import { trpc } from "@/lib/trpc";
 import {
   Phone, MessageCircle, ArrowRight, CheckCircle,
-  SlidersHorizontal, ChevronDown, X
+  SlidersHorizontal, ChevronDown, X, Gauge, Zap, DollarSign
 } from "lucide-react";
+import { getCardSpecs } from "@/data/vehicleCardSpecs";
 
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/hero-rentals-gyjcZpNHvpKt2eUFsZr34P.webp";
 
@@ -49,7 +50,7 @@ export default function Rentals() {
   const brands = useMemo(() => {
     const brandSet = new Set<string>();
     displayVehicles.forEach((car) => {
-      const brand = car.brand || car.type || "";
+      const brand = (car.brand || car.type || "").trim();
       if (brand) brandSet.add(brand);
     });
     return ["All", ...Array.from(brandSet).sort()];
@@ -62,7 +63,7 @@ export default function Rentals() {
     // Apply brand filter
     if (selectedBrand !== "All") {
       result = result.filter((car) => {
-        const brand = car.brand || car.type || "";
+        const brand = (car.brand || car.type || "").trim();
         return brand === selectedBrand;
       });
     }
@@ -248,7 +249,7 @@ export default function Rentals() {
       <section className="py-10 bg-[#080808]">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           {filteredVehicles.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredVehicles.map((car) => {
                 const linkId = car.id || car.slug;
                 const linkPath = car.id ? `/vehicles/${car.id}` : `/rentals/${car.slug}`;
@@ -256,38 +257,111 @@ export default function Rentals() {
                 const carType = car.brand || car.type || "Vehicle";
                 const carBadge = car.status || car.badge || "Available";
                 const carName = car.name || "Unknown Vehicle";
+                const dailyRate = car.suggestedRate || car.dailyRate || 0;
+                const specs = getCardSpecs(carName);
+
+                // Strip brand from display name for cleaner look
+                const displayName = carName.replace(new RegExp(`^${carType}\\s*`, 'i'), '') || carName;
 
                 if (!carImage && !carName) return null;
 
                 return (
-                  <Link key={linkId} href={linkPath}>
-                    <div className="card-hover bg-[#0e0e0e] overflow-hidden group cursor-pointer">
-                      <div className="relative h-40 overflow-hidden bg-[#1a1a1a]">
-                        {carImage ? (
-                          <img
-                            src={carImage}
-                            alt={carName}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center text-white/30">
-                            <span className="text-xs">No Image</span>
+                  <div key={linkId} className="group bg-[#0c0c0c] border border-[#1a1a1a] hover:border-[#D4AF37]/40 overflow-hidden transition-all duration-500 hover:shadow-[0_0_30px_rgba(212,175,55,0.08)]">
+                    {/* Image */}
+                    <div className="relative h-52 sm:h-56 overflow-hidden bg-[#111]">
+                      {carImage ? (
+                        <img
+                          src={carImage}
+                          alt={carName}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-white/30">
+                          <span className="text-xs">No Image</span>
+                        </div>
+                      )}
+                      {/* Badge */}
+                      <span className="absolute top-3 right-3 bg-[#D4AF37]/95 text-[#080808] font-['Barlow_Condensed'] font-bold text-[9px] tracking-[0.15em] uppercase px-2.5 py-1 backdrop-blur-sm">
+                        {carBadge}
+                      </span>
+                    </div>
+
+                    {/* Info Section */}
+                    <div className="p-5">
+                      {/* Brand + Name + Rate */}
+                      <div className="flex items-start justify-between gap-3 mb-4">
+                        <div>
+                          <p className="text-[#D4AF37] font-['Barlow_Condensed'] font-semibold text-[11px] tracking-[0.2em] uppercase mb-1">
+                            {carType}
+                          </p>
+                          <h4 className="font-['Barlow_Condensed'] font-bold text-lg text-white leading-tight">
+                            {displayName}
+                          </h4>
+                        </div>
+                        {dailyRate > 0 && (
+                          <div className="text-right shrink-0">
+                            <p className="text-[#D4AF37] font-['Barlow_Condensed'] font-semibold text-[9px] tracking-[0.2em] uppercase">
+                              Starting at
+                            </p>
+                            <p className="font-['Barlow_Condensed'] font-black text-xl text-white leading-none">
+                              ${dailyRate.toLocaleString()}
+                              <span className="text-white/40 font-normal text-xs">/day</span>
+                            </p>
                           </div>
                         )}
-                        {carImage && <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />}
-                        <span className="absolute top-2 right-2 bg-[#D4AF37] text-[#080808] font-['Barlow_Condensed'] font-bold text-[8px] tracking-widest uppercase px-2 py-1">
-                          {carBadge}
-                        </span>
                       </div>
-                      <div className="p-4">
-                        <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase mb-1">{carType}</p>
-                        <h4 className="font-['Barlow_Condensed'] font-bold text-sm uppercase text-white mb-3">{carName}</h4>
-                        <span className="btn-gold text-xs px-3 py-2 flex items-center gap-1.5 w-full justify-center">
-                          View Details <ArrowRight size={10} />
-                        </span>
+
+                      {/* Divider */}
+                      <div className="h-px bg-gradient-to-r from-[#D4AF37]/30 via-[#D4AF37]/10 to-transparent mb-4" />
+
+                      {/* Specs Row */}
+                      {specs && (
+                        <div className="grid grid-cols-3 gap-0 mb-5">
+                          <div className="text-center border-r border-[#2a2a2a] pr-2">
+                            <p className="font-['Barlow'] font-semibold text-white text-[11px] leading-tight truncate">
+                              {specs.engine}
+                            </p>
+                            <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-[9px] tracking-[0.15em] uppercase mt-0.5">
+                              Engine
+                            </p>
+                          </div>
+                          <div className="text-center border-r border-[#2a2a2a] px-2">
+                            <p className="font-['Barlow'] font-semibold text-white text-[11px] leading-tight">
+                              {specs.horsepower}
+                            </p>
+                            <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-[9px] tracking-[0.15em] uppercase mt-0.5">
+                              HP
+                            </p>
+                          </div>
+                          <div className="text-center pl-2">
+                            <p className="font-['Barlow'] font-semibold text-white text-[11px] leading-tight">
+                              {specs.msrp}
+                            </p>
+                            <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-[9px] tracking-[0.15em] uppercase mt-0.5">
+                              MSRP
+                            </p>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Dual Action Buttons */}
+                      <div className="grid grid-cols-2 gap-2">
+                        <a
+                          href="#inquiry"
+                          onClick={(e) => e.stopPropagation()}
+                          className="bg-[#D4AF37] text-[#080808] font-['Barlow_Condensed'] font-bold text-xs tracking-[0.1em] uppercase text-center py-2.5 px-3 hover:bg-[#e5c44a] transition-colors duration-300"
+                        >
+                          Request
+                        </a>
+                        <Link
+                          href={linkPath}
+                          className="border border-[#D4AF37]/60 text-[#D4AF37] font-['Barlow_Condensed'] font-bold text-xs tracking-[0.1em] uppercase text-center py-2.5 px-3 hover:bg-[#D4AF37]/10 transition-colors duration-300"
+                        >
+                          Details
+                        </Link>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 );
               })}
             </div>

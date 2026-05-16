@@ -54,3 +54,9 @@
 - [x] Add sort options (Newest, Price Low/High, Brand A-Z, Most Popular)
 - [x] Mobile-optimized collapsible filters with touch-friendly UI
 - [x] Maintain black/gold luxury aesthetic on filter bar
+- [x] Upgrade vehicle cards: enhanced info layout (brand, name, daily rate)
+- [x] Add 3-column specs row to cards (Engine, HP, MSRP)
+- [x] Replace single VIEW DETAILS with dual buttons (Request Availability + Details)
+- [x] Improve card styling: premium hover animations, glow effects, better spacing
+- [x] Refine AVAILABLE badge positioning and styling
+- [x] Mobile optimize upgraded cards
