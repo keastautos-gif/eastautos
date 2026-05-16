@@ -110,7 +110,7 @@ export default function VehicleDetail() {
       <Navbar />
 
       {/* ── MAIN CONTENT ── */}
-      <section className="bg-[#080808] pt-4 pb-8">
+      <section className="bg-[#080808] pt-24 pb-8">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Hero Image & Gallery + Sidebar */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
@@ -190,8 +190,27 @@ export default function VehicleDetail() {
                 <span className="text-white/70">{displayVehicle?.name}</span>
               </nav>
 
-              {/* Brand & Title Section (below breadcrumb) */}
+              {/* Status Badge + Brand & Title Section (below breadcrumb) */}
               <div className="mt-6">
+                {/* Status Badge */}
+                {displayVehicle?.status && (
+                  <div className="mb-4">
+                    <div
+                      className={`inline-block px-3 py-1.5 rounded-sm text-xs font-['Barlow_Condensed'] font-bold tracking-wider uppercase border ${
+                        displayVehicle.status === "Available"
+                          ? "bg-green-600/20 text-green-400 border-green-600/30"
+                          : displayVehicle.status === "Booked"
+                          ? "bg-amber-600/20 text-amber-400 border-amber-600/30"
+                          : displayVehicle.status === "Unavailable"
+                          ? "bg-red-600/20 text-red-400 border-red-600/30"
+                          : "bg-gray-600/20 text-gray-400 border-gray-600/30"
+                      }`}
+                    >
+                      {displayVehicle.status}
+                    </div>
+                  </div>
+                )}
+
                 <div className="flex items-center gap-2 mb-3">
                   <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase">
                     {displayVehicle?.brand || displayVehicle?.type}
@@ -223,25 +242,6 @@ export default function VehicleDetail() {
             {/* Vehicle Info Sidebar */}
             <div className="flex flex-col justify-between">
               <div>
-                {/* Status Badge */}
-                {displayVehicle?.status && (
-                  <div className="mb-6">
-                    <div
-                      className={`inline-block px-3 py-1.5 rounded-sm text-xs font-['Barlow_Condensed'] font-bold tracking-wider uppercase border ${
-                        displayVehicle.status === "Available"
-                          ? "bg-green-600/20 text-green-400 border-green-600/30"
-                          : displayVehicle.status === "Booked"
-                          ? "bg-amber-600/20 text-amber-400 border-amber-600/30"
-                          : displayVehicle.status === "Unavailable"
-                          ? "bg-red-600/20 text-red-400 border-red-600/30"
-                          : "bg-gray-600/20 text-gray-400 border-gray-600/30"
-                      }`}
-                    >
-                      {displayVehicle.status}
-                    </div>
-                  </div>
-                )}
-
                 {/* Pricing & Request Button */}
                 <div className="mb-8 pb-8 border-b border-[#1a1a1a]">
                   <p className="text-white/50 font-['Barlow'] text-xs tracking-wider uppercase mb-2">

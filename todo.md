@@ -45,3 +45,5 @@
 - [x] Add performance specs section to every vehicle detail page
 - [x] Add vehicle-specific FAQs to every vehicle detail page
 - [x] Fix mobile header overlap: move brand/title/specs below breadcrumb, above pricing
+- [x] Fix hero image overlapping header on mobile: add top padding to push content below navbar
+- [x] Move "Available" badge above brand name but below breadcrumb
