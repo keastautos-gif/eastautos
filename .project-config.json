@@ -1,0 +1,49 @@
+{
+  "build_command": "pnpm run build",
+  "capabilities": [
+    "db",
+    "server",
+    "user"
+  ],
+  "dev_command": "pnpm run dev",
+  "env_vars": {
+    "DATABASE_URL": "mysql://3kg93vqfqjghxj6.root:22dqj4Jj2Aiv9csYYs3u@gateway05.us-east-1.prod.aws.tidbcloud.com:4000/9PUjxLiqBNTsZ9XadNwzZw?ssl={\"rejectUnauthorized\":true}",
+    "DRIZZLE_DATABASE_URL": "mysql://3kg93vqfqjghxj6.root:22dqj4Jj2Aiv9csYYs3u@gateway05.us-east-1.prod.aws.tidbcloud.com:4000/9PUjxLiqBNTsZ9XadNwzZw?ssl={\"rejectUnauthorized\":true}"
+  },
+  "experiments": null,
+  "git_remote": {
+    "repo_url": "s3://vida-prod-gitrepo/webdev-git/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw",
+    "access_key_id": "ASIAZV3A2ECZM2QSMYCE",
+    "secret_access_key": "3Qct1YGKrHtYugBUHQ1KPiF1YJMJR4T/iRaSgM5J",
+    "session_token": "IQoJb3JpZ2luX2VjELz//////////wEaCXVzLWVhc3QtMSJHMEUCIBsTkjcYVw46WssHLOHA6AiIYDfwfQasEhu/+sid09e7AiEAjYzQNRJj0K3VeSOTEcBDAq0e3w0w4cmbrI9IXLHjOckq/wMIhf//////////ARAEGgw2NjUzODYwOTg4NjYiDN+GbrT6jit6MCBoeSrTA3M5DYYAleA251PEtnBR61t1ubWAMru5Am/l0TzfyF+WtmbbFZjpC4+RUieNPdgsMfOoDDY77FL5CKA8shYhJLMUhsCirrnTEKZuwjGe/T1aeHNmQtmAzBusQb8DBRo2azUz7i8N89hlO7JkdZRUhbbYWhzH3CvxI5VeR7VoeYGHt9+Ssr97xxVqrY9XzviDTZoDAJnIjd1r0O10IHJMxxfrwZB7jRG0V1FQDyAFv0HicStKmoriC4HAcjqKYqDHAcyZMnu/tmd7zCoXiDsqO6tR9cr8ZuOH8vpzcVLcTG3pA4nUOnUABReG3j9hjFh33qTDqBZmKVkLohkwoeAVeJlu/EZ0I+mKf32vp3BoYN/EkNzuO4PHYf0+3swFXLKI3F48ca2Oj8pSeF6y27NJNYmIM0Owk2fVLfhRXT+Sw/QPvZbX5l5DJRzLX/VPy4ICJy6UksN1iVvoRMJrFOmrIimPdabHp1d72cuzG4F3I/Fc0DyEanXPnPzNbCWmIUAA+YTf6rrkALsuDjK+rNCHRwn4ah7ECQdluswkEH1DFK0j620GGYqVmayPI6BKCwvz1uh1SEOURsz+haFyoW8Dyyi0Oq2gNNyWTNc/wirjBD+04H2nMJ/Nn9AGOp0BeA9iRJTtH8WIjgnVU+7eTts9kej4uWkSRRu/TH0sfVOrHz/INqMns5yr5MfNhpUNuf9sRsZWEmUD6L02oqxcwUXklep2bx90kq5rWaoXNcZqyX2gLHlDOzGuqrKf1Txl59eQrPeaToxSicF7VNK1sRDhRaKKhjmT6MVTYTu0hi7yyMhODLdQJUmbccvy7x2kEtBN0URmTswks2b8xw==",
+    "expiration": "2026-05-16T15:38:07.000Z"
+  },
+  "name": "eastautos",
+  "path": "/home/ubuntu/eastautos",
+  "port": 3000,
+  "secrets": {
+    "AIRTABLE_API_KEY": "pat0FJiHHqLqFU0rF.15e94db44eabd863f214552d578d76d86008431d0138489d226c1c41e115e6f4",
+    "AIRTABLE_BASE_ID": "appzfCgfntY0L8B2J",
+    "BUILT_IN_FORGE_API_KEY": "movkgbZ6RPJ2Wnd8wMqSos",
+    "BUILT_IN_FORGE_API_URL": "https://forge.manus.ai",
+    "JWT_SECRET": "dWFAtHarMHy4FAWNpmga65",
+    "OAUTH_SERVER_URL": "https://api.manus.im",
+    "OWNER_EMAIL": "Eastautos@icloud.com",
+    "OWNER_NAME": "Elvis Nuñez",
+    "OWNER_OPEN_ID": "eTDP6emBLAwSf6SC3Qtgf7",
+    "OWNER_PHONE_NUMBER": "9293866103",
+    "TWILIO_ACCOUNT_SID": "AC3c24e7063f0d208606286f7d3703c6f5",
+    "TWILIO_AUTH_TOKEN": "65202c953ec30a418eda0a89f2caf63f",
+    "TWILIO_PHONE_NUMBER": "8449484881",
+    "VITE_ANALYTICS_ENDPOINT": "https://manus-analytics.com",
+    "VITE_ANALYTICS_WEBSITE_ID": "c9c77204-87f3-4797-8b64-be2184b1e742",
+    "VITE_APP_ID": "9PUjxLiqBNTsZ9XadNwzZw",
+    "VITE_APP_LOGO": "https://files.manuscdn.com/user_upload_by_module/web_dev_logo/310519663491125776/AyuMdsARIXnvNnMb.png",
+    "VITE_APP_TITLE": "Eastautos — Luxury Automotive",
+    "VITE_FRONTEND_FORGE_API_KEY": "itG25QxFZWLgP69sCtiLCD",
+    "VITE_FRONTEND_FORGE_API_URL": "https://forge.manus.ai",
+    "VITE_OAUTH_PORTAL_URL": "https://manus.im"
+  },
+  "template_id": "web-db-user",
+  "test_command": "pnpm test"
+}

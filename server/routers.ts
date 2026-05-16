@@ -29,6 +29,7 @@ import {
 } from "./db";
 import { notifyOwner } from "./_core/notification";
 import { sendSmsAlert } from "./sms";
+import { getAirtableVehicles } from "./airtable";
 
 export const appRouter = router({
   system: systemRouter,
@@ -399,6 +400,14 @@ export const appRouter = router({
       monthly: adminProcedure.query(async () => {
         return getMonthlyProfitSummary();
       }),
+    }),
+  }),
+
+  // ─── Public Vehicles (Airtable) ──────────────────────────────────────────
+
+  vehicles: router({
+    getAvailable: publicProcedure.query(async () => {
+      return getAirtableVehicles();
     }),
   }),
 });

@@ -6,6 +6,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Rentals from "./pages/Rentals";
+import Vehicles from "./pages/Vehicles";
 import BuyTradeSell from "./pages/BuyTradeSell";
 import Chauffeur from "./pages/Chauffeur";
 import Photoshoots from "./pages/Photoshoots";
@@ -22,6 +23,7 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/rentals"} component={Rentals} />
       <Route path={"/rentals/:slug"} component={VehicleDetail} />
+      <Route path={"/vehicles"} component={Vehicles} />
       <Route path={"/buy"} component={BuyTradeSell} />
       <Route path={"/sell"} component={BuyTradeSell} />
       <Route path={"/buy-trade-sell"} component={BuyTradeSell} />
