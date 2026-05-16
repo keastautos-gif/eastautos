@@ -300,16 +300,9 @@ export default function VehicleDetail() {
             </div>
             <div className="bg-[#0e0e0e] border border-[#1a1a1a] p-8 lg:p-10">
               <InquiryForm
-                title={`Book ${vehicle.name}`}
-                subtitle="We'll confirm availability within 2 hours."
-                serviceOptions={[
-                  "Daily Rental",
-                  "Weekend Package",
-                  "Weekly Rental",
-                  "Monthly Rental",
-                  "Special Event",
-                ]}
-                defaultService="Daily Rental"
+                title="Luxury Concierge Request"
+                subtitle="Eastautos will confirm availability, pricing, and delivery options after submission."
+                prefilledVehicle={vehicle.name}
               />
             </div>
           </div>

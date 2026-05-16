@@ -155,9 +155,7 @@ export default function SellTrade() {
             <div className="bg-[#0e0e0e] border border-[#1a1a1a] p-8 lg:p-10">
               <InquiryForm
                 title="Get Your Valuation"
-                subtitle="Free offer within 24 hours."
-                serviceOptions={["Sell My Car (Cash)", "Trade-In for Another Vehicle", "Trade-In + Rental", "Consignment Sale"]}
-                defaultService="Sell My Car (Cash)"
+                subtitle="Free offer within 24 hours. Our concierge team responds within 24 hours."
               />
             </div>
           </div>

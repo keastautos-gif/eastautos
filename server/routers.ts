@@ -51,9 +51,13 @@ export const appRouter = router({
         z.object({
           name: z.string().min(1, "Name is required"),
           phone: z.string().min(10, "Valid phone number required"),
+          email: z.string().email().optional(),
           inquiryType: z.string().min(1, "Inquiry type is required"),
           vehicleInterest: z.string().optional(),
           additionalInfo: z.string().optional(),
+          pickupDate: z.string().optional(),
+          returnDate: z.string().optional(),
+          occasion: z.string().optional(),
         })
       )
       .mutation(async ({ input }) => {
@@ -96,7 +100,10 @@ export const appRouter = router({
           await createAirtableLead({
             fullName: input.name,
             phoneNumber: input.phone,
+            email: input.email || undefined,
             vehicleRequested: input.vehicleInterest || undefined,
+            eventDate: input.pickupDate || undefined,
+            occasion: input.occasion || undefined,
             message: input.additionalInfo || undefined,
             leadSource: "Website",
             leadStatus: "New Inquiry",

@@ -246,10 +246,8 @@ export default function Photoshoots() {
             </div>
             <div className="bg-[#0e0e0e] border border-[#1a1a1a] p-8 lg:p-10">
               <InquiryForm
-                title="Book a Photoshoot"
-                subtitle="We'll get back to you within 24 hours."
-                serviceOptions={["Essential Package ($499)", "Premium Package ($999)", "Elite Package ($2,499)", "Custom / Corporate Quote"]}
-                defaultService="Premium Package ($999)"
+                title="Luxury Concierge Request"
+                subtitle="Eastautos will confirm availability, pricing, and delivery options after submission."
               />
             </div>
           </div>

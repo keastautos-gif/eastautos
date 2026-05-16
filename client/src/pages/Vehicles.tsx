@@ -96,7 +96,7 @@ function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
 
         {/* CTA Buttons */}
         <div className="flex gap-2">
-          <a href={vehicle.inquiryLink || "/contact"} className="flex-1">
+          <a href={`/contact?vehicle=${encodeURIComponent(vehicle.name)}`} className="flex-1">
             <button className="btn-gold w-full text-xs px-3 py-2.5 flex items-center justify-center gap-1.5">
               Inquire <ArrowRight size={10} />
             </button>

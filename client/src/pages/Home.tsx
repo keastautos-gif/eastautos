@@ -316,9 +316,8 @@ export default function Home() {
             </div>
             <div className="bg-[#0e0e0e] border border-[#1a1a1a] p-8 lg:p-10">
               <InquiryForm
-                title="Quick Inquiry"
-                subtitle="Response within 24 hours."
-                serviceOptions={["Rent a Vehicle", "Purchase Inquiry", "Sell / Trade-In", "Other"]}
+                title="Luxury Concierge Request"
+                subtitle="Eastautos will confirm availability, pricing, and delivery options after submission."
               />
             </div>
           </div>

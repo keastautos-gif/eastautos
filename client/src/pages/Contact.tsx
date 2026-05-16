@@ -2,6 +2,8 @@
    EASTAUTOS — Contact Page
    Midnight Drive: full contact page with form + info
    ============================================================ */
+import { useEffect, useState } from "react";
+import { useLocation } from "wouter";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InquiryForm from "@/components/InquiryForm";
@@ -68,6 +70,17 @@ const faqs = [
 ];
 
 export default function Contact() {
+  const [, params] = useLocation();
+  const [prefilledVehicle, setPrefilledVehicle] = useState("");
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const vehicle = searchParams.get("vehicle");
+    if (vehicle) {
+      setPrefilledVehicle(decodeURIComponent(vehicle));
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#080808] text-white overflow-x-hidden">
       <Navbar />
@@ -179,16 +192,9 @@ export default function Contact() {
             {/* Right: Form */}
             <div className="bg-[#0e0e0e] border border-[#1a1a1a] p-8 lg:p-10">
               <InquiryForm
-                title="Send an Inquiry"
-                subtitle="Our concierge team responds within 24 hours."
-                serviceOptions={[
-                  "Rent a Car",
-                  "Buy a Car",
-                  "Sell / Trade-In",
-                  "Chauffeur Service",
-                  "Photoshoot",
-                  "General Inquiry",
-                ]}
+                title="Luxury Concierge Request"
+                subtitle="Eastautos will confirm availability, pricing, and delivery options after submission."
+                prefilledVehicle={prefilledVehicle}
               />
             </div>
           </div>
