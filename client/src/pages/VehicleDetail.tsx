@@ -51,7 +51,7 @@ export default function VehicleDetail() {
 
   const displayVehicle = vehicle || staticVehicle;
 
-  if ((error || !vehicle) && !staticVehicle) {
+  if (!displayVehicle) {
     return (
       <div className="min-h-screen bg-[#080808] text-white">
         <Navbar />
@@ -69,11 +69,18 @@ export default function VehicleDetail() {
     );
   }
 
-  const photos = displayVehicle?.photos && displayVehicle.photos.length > 0 
+  const photos = (displayVehicle?.photos && displayVehicle.photos.length > 0 
     ? displayVehicle.photos 
-    : [displayVehicle?.image || ""];
-  const nextImage = () => setActiveImage((prev) => (prev + 1) % photos.length);
-  const prevImage = () => setActiveImage((prev) => (prev - 1 + photos.length) % photos.length);
+    : [displayVehicle?.image || ""]).filter(Boolean);
+  
+  const nextImage = () => {
+    if (photos.length === 0) return;
+    setActiveImage((prev) => (prev + 1) % photos.length);
+  };
+  const prevImage = () => {
+    if (photos.length === 0) return;
+    setActiveImage((prev) => (prev - 1 + photos.length) % photos.length);
+  };
 
   return (
     <div className="min-h-screen bg-[#080808] text-white overflow-x-hidden">
@@ -105,21 +112,21 @@ export default function VehicleDetail() {
             {/* Main Gallery */}
             <div className="lg:col-span-2">
               <div className="relative aspect-[16/10] bg-[#0e0e0e] overflow-hidden mb-3">
-                {photos[activeImage] ? (
+                {photos.length > 0 && photos[activeImage] ? (
                   <img
                     src={photos[activeImage]}
-                    alt={`${displayVehicle?.name} — Photo ${activeImage + 1}`}
+                    alt={`${displayVehicle?.name || "Vehicle"} — Photo ${activeImage + 1}`}
                     className="w-full h-full object-cover transition-opacity duration-500"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center">
+                  <div className="w-full h-full flex items-center justify-center bg-[#1a1a1a]">
                     <AlertCircle size={32} className="text-[#D4AF37]/40" />
                   </div>
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e]/30 to-transparent pointer-events-none" />
 
                 {/* Gallery Controls */}
-                {photos.length > 1 && (
+                {photos && photos.length > 1 && (
                   <>
                     <button
                       onClick={prevImage}
@@ -133,17 +140,19 @@ export default function VehicleDetail() {
                     >
                       <ChevronRight size={20} className="text-white" />
                     </button>
+                  {photos.length > 0 && (
                     <div className="absolute bottom-3 right-3 bg-black/70 px-3 py-1 font-['Barlow_Condensed'] text-xs tracking-wider text-white/70">
                       {activeImage + 1} / {photos.length}
                     </div>
+                  )}
                   </>
                 )}
               </div>
 
               {/* Thumbnails */}
-              {photos.length > 1 && (
+              {photos && photos.length > 1 && (
                 <div className="grid grid-cols-4 gap-2">
-                  {photos.map((photo: string, i: number) => (
+                  {photos.filter(Boolean).map((photo: string, i: number) => (
                     <button
                       key={i}
                       onClick={() => setActiveImage(i)}
@@ -155,7 +164,7 @@ export default function VehicleDetail() {
                     >
                       <img
                         src={photo}
-                        alt={`${displayVehicle?.name} — Thumbnail ${i + 1}`}
+                        alt={`${displayVehicle?.name || "Vehicle"} — Thumbnail ${i + 1}`}
                         className="w-full h-full object-cover"
                       />
                     </button>
@@ -189,7 +198,9 @@ export default function VehicleDetail() {
                         ? "bg-green-600/20 text-green-400 border-green-600/30"
                         : displayVehicle.status === "Booked"
                         ? "bg-amber-600/20 text-amber-400 border-amber-600/30"
-                        : "bg-red-600/20 text-red-400 border-red-600/30"
+                        : displayVehicle.status === "Unavailable"
+                        ? "bg-red-600/20 text-red-400 border-red-600/30"
+                        : "bg-gray-600/20 text-gray-400 border-gray-600/30"
                     }`}
                   >
                     {displayVehicle.status}
@@ -203,7 +214,7 @@ export default function VehicleDetail() {
                     Estimated Daily Rate
                   </p>
                   <p className="text-[#D4AF37] font-['Barlow_Condensed'] font-black text-3xl">
-                    ${(displayVehicle?.suggestedRate || displayVehicle?.price || 0).toLocaleString()}
+                    ${(displayVehicle?.suggestedRate ?? displayVehicle?.price ?? 0).toLocaleString()}
                   </p>
                   <p className="text-white/40 font-['Barlow'] text-xs mt-3">
                     Availability confirmed after inquiry submission.

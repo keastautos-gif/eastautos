@@ -71,27 +71,37 @@ export default function Rentals() {
               // Use Airtable ID if available, otherwise use slug
               const linkId = car.id || car.slug;
               const linkPath = car.id ? `/vehicles/${car.id}` : `/rentals/${car.slug}`;
-              const carImage = car.image || car.images?.[0];
-              const carType = car.brand || car.type;
-              const carBadge = car.status || car.badge;
+              const carImage = car.image || car.images?.[0] || "";
+              const carType = car.brand || car.type || "Vehicle";
+              const carBadge = car.status || car.badge || "Available";
+              const carName = car.name || "Unknown Vehicle";
+
+              // Skip rendering if no image and no name
+              if (!carImage && !carName) return null;
 
               return (
                 <Link key={linkId} href={linkPath}>
                   <div className="card-hover bg-[#0e0e0e] overflow-hidden group cursor-pointer">
-                    <div className="relative h-40 overflow-hidden">
-                      <img
-                        src={carImage}
-                        alt={car.name}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />
+                    <div className="relative h-40 overflow-hidden bg-[#1a1a1a]">
+                      {carImage ? (
+                        <img
+                          src={carImage}
+                          alt={carName}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-white/30">
+                          <span className="text-xs">No Image</span>
+                        </div>
+                      )}
+                      {carImage && <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />}
                       <span className="absolute top-2 right-2 bg-[#D4AF37] text-[#080808] font-['Barlow_Condensed'] font-bold text-[8px] tracking-widest uppercase px-2 py-1">
                         {carBadge}
                       </span>
                     </div>
                     <div className="p-4">
                       <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase mb-1">{carType}</p>
-                      <h4 className="font-['Barlow_Condensed'] font-bold text-sm uppercase text-white mb-3">{car.name}</h4>
+                      <h4 className="font-['Barlow_Condensed'] font-bold text-sm uppercase text-white mb-3">{carName}</h4>
                       <span className="btn-gold text-xs px-3 py-2 flex items-center gap-1.5 w-full justify-center">
                         View Details <ArrowRight size={10} />
                       </span>
