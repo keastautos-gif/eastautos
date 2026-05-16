@@ -44,3 +44,4 @@
 - [x] Add luxury vehicle descriptions to every vehicle detail page
 - [x] Add performance specs section to every vehicle detail page
 - [x] Add vehicle-specific FAQs to every vehicle detail page
+- [x] Fix mobile header overlap: move brand/title/specs below breadcrumb, above pricing

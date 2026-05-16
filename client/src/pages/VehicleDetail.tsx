@@ -110,37 +110,8 @@ export default function VehicleDetail() {
       <Navbar />
 
       {/* ── MAIN CONTENT ── */}
-      <section className="bg-[#080808] py-8">
+      <section className="bg-[#080808] pt-4 pb-8">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Brand & Title Section */}
-          <div className="mb-8">
-            <div className="flex items-center gap-2 mb-3">
-              <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase">
-                {displayVehicle?.brand || displayVehicle?.type}
-              </p>
-              {displayVehicle?.brand && (
-                <img
-                  src={`https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${displayVehicle.brand.toLowerCase().replace(/\s+/g, '')}.svg`}
-                  alt={displayVehicle.brand}
-                  className="w-4 h-4 opacity-70"
-                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                />
-              )}
-            </div>
-            <h1
-              className="font-['Barlow_Condensed'] font-black text-white uppercase leading-none mb-3"
-              style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
-            >
-              {displayVehicle?.name}
-            </h1>
-            {/* Short specs line */}
-            {content.specs.length > 0 && (
-              <p className="text-white/50 font-['Barlow'] text-sm">
-                {content.specs.slice(0, 4).map((s) => s.value).join(" • ")}
-              </p>
-            )}
-          </div>
-
           {/* Hero Image & Gallery + Sidebar */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
             {/* Main Gallery */}
@@ -218,6 +189,35 @@ export default function VehicleDetail() {
                 <span className="text-white/30">/</span>
                 <span className="text-white/70">{displayVehicle?.name}</span>
               </nav>
+
+              {/* Brand & Title Section (below breadcrumb) */}
+              <div className="mt-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase">
+                    {displayVehicle?.brand || displayVehicle?.type}
+                  </p>
+                  {displayVehicle?.brand && (
+                    <img
+                      src={`https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${displayVehicle.brand.toLowerCase().replace(/\s+/g, '')}.svg`}
+                      alt={displayVehicle.brand}
+                      className="w-4 h-4 opacity-70"
+                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                    />
+                  )}
+                </div>
+                <h1
+                  className="font-['Barlow_Condensed'] font-black text-white uppercase leading-none mb-3"
+                  style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
+                >
+                  {displayVehicle?.name}
+                </h1>
+                {/* Short specs line */}
+                {content.specs.length > 0 && (
+                  <p className="text-white/50 font-['Barlow'] text-sm">
+                    {content.specs.slice(0, 4).map((s) => s.value).join(" • ")}
+                  </p>
+                )}
+              </div>
             </div>
 
             {/* Vehicle Info Sidebar */}
