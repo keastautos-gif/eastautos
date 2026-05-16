@@ -25,25 +25,27 @@ import {
 } from "lucide-react";
 
 export default function VehicleDetail() {
-  const params = useParams<{ id: string }>();
+  const params = useParams<{ id?: string; slug?: string }>();
+  // Support both /vehicles/:id and /rentals/:slug routes
+  const vehicleId = params.id || params.slug;
   const [, setLocation] = useLocation();
   const [activeImage, setActiveImage] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const inquiryFormRef = useRef<HTMLDivElement>(null);
 
   // Try to fetch from Airtable first (if ID looks like an Airtable record ID)
-  const isAirtableId = params.id && params.id.length > 10;
-  const shouldFetchAirtable = isAirtableId && !!params.id;
+  const isAirtableId = vehicleId && vehicleId.length > 10;
+  const shouldFetchAirtable = isAirtableId && !!vehicleId;
   const { data: vehicle, isLoading, error } = shouldFetchAirtable
-    ? trpc.vehicles.getById.useQuery({ id: params.id! })
+    ? trpc.vehicles.getById.useQuery({ id: vehicleId! })
     : { data: null, isLoading: false, error: null };
 
   // Fallback: Try to find vehicle in static data if Airtable fetch fails or ID is a slug
   let staticVehicle: any = null;
-  if (!shouldFetchAirtable && params.id) {
+  if (!shouldFetchAirtable && vehicleId) {
     try {
       const staticVehicles = require("@/data/vehicles").vehicles;
-      staticVehicle = staticVehicles.find((v: any) => v.slug === params.id);
+      staticVehicle = staticVehicles.find((v: any) => v.slug === vehicleId);
     } catch (e) {
       // Static vehicles data not available
     }
