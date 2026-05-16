@@ -26,20 +26,20 @@ export default function VehicleDetail() {
   // Try to fetch from Airtable first (if ID looks like an Airtable record ID)
   // Otherwise, it might be a legacy slug from static data
   const isAirtableId = params.id && params.id.length > 10; // Airtable IDs are typically long
-  const { data: vehicle, isLoading, error } = trpc.vehicles.getById.useQuery(
-    isAirtableId && params.id ? { id: params.id } : undefined,
-    { enabled: !!(isAirtableId && params.id) }
-  );
+  const shouldFetchAirtable = isAirtableId && !!params.id;
+  const { data: vehicle, isLoading, error } = shouldFetchAirtable
+    ? trpc.vehicles.getById.useQuery({ id: params.id! })
+    : { data: null, isLoading: false, error: null };
 
   // Fallback: Try to find vehicle in static data if Airtable fetch fails or ID is a slug
-  let staticVehicle = null;
-  try {
-    const staticVehicles = require("@/data/vehicles").vehicles;
-    if (!isAirtableId && params.id) {
+  let staticVehicle: any = null;
+  if (!shouldFetchAirtable && params.id) {
+    try {
+      const staticVehicles = require("@/data/vehicles").vehicles;
       staticVehicle = staticVehicles.find((v: any) => v.slug === params.id);
+    } catch (e) {
+      // Static vehicles data not available
     }
-  } catch (e) {
-    // Static vehicles data not available
   }
 
   if (isLoading) {
