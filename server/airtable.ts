@@ -5,7 +5,7 @@ export interface AirtableVehicle {
   name: string;
   brand: string;
   status: "Available" | "Booked" | "Unavailable";
-  dailyRate: number;
+  suggestedRate: number;
   image: string;
   showOnWebsite: boolean;
   location: string;
@@ -72,7 +72,7 @@ export async function getAirtableVehicles(): Promise<AirtableVehicle[]> {
         name: extractVehicleName((record.fields["Car ID"] as string) || ""),
         brand: (record.fields["Car Model"] as string) || "",
         status: (status === "Available" || status === "Booked" || status === "Unavailable" ? status : "Unavailable") as "Available" | "Booked" | "Unavailable",
-        dailyRate: (record.fields["Daily Rate"] as number) || 0,
+        suggestedRate: (record.fields["Suggested Rate"] as number) || 0,
         image: extractImageUrl(record.fields["Car Photo"]),
         showOnWebsite: (record.fields["Show On Website"] as boolean) || false,
         location: (record.fields["Location"] as string) || "",

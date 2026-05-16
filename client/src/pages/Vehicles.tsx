@@ -17,7 +17,7 @@ interface Vehicle {
   name: string;
   brand: string;
   status: "Available" | "Booked" | "Unavailable";
-  dailyRate: number;
+  suggestedRate: number;
   image: string;
   showOnWebsite: boolean;
   location: string;
@@ -81,7 +81,7 @@ function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
               Daily Rate
             </p>
             <p className="text-[#D4AF37] font-['Barlow_Condensed'] font-bold">
-              ${vehicle.dailyRate.toLocaleString()}
+              ${vehicle.suggestedRate.toLocaleString()}
             </p>
           </div>
           <div>
