@@ -3,16 +3,35 @@
    Broader inventory network, inquiry-focused,
    direct contact prioritization. Cards link to detail pages.
    ============================================================ */
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InquiryForm from "@/components/InquiryForm";
-import { vehicles } from "@/data/vehicles";
+import { trpc } from "@/lib/trpc";
 import { Phone, MessageCircle, ArrowRight, CheckCircle } from "lucide-react";
 
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/hero-rentals-gyjcZpNHvpKt2eUFsZr34P.webp";
 
 export default function Rentals() {
+  const { data: airtableVehicles = [] } = trpc.vehicles.getAvailable.useQuery();
+  const [displayVehicles, setDisplayVehicles] = useState<any[]>([]);
+
+  useEffect(() => {
+    // Use Airtable vehicles if available, otherwise fall back to static data
+    if (airtableVehicles.length > 0) {
+      setDisplayVehicles(airtableVehicles);
+    } else {
+      // Fallback to static data
+      try {
+        const { vehicles: staticVehicles } = require("@/data/vehicles");
+        setDisplayVehicles(staticVehicles);
+      } catch {
+        setDisplayVehicles([]);
+      }
+    }
+  }, [airtableVehicles]);
+
   return (
     <div className="min-h-screen bg-[#080808] text-white overflow-x-hidden">
       <Navbar />
@@ -48,30 +67,39 @@ export default function Rentals() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {vehicles.map((car) => (
-              <Link key={car.slug} href={`/rentals/${car.slug}`}>
-                <div className="card-hover bg-[#0e0e0e] overflow-hidden group cursor-pointer">
-                  <div className="relative h-40 overflow-hidden">
-                    <img
-                      src={car.images[0]}
-                      alt={car.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />
-                    <span className="absolute top-2 right-2 bg-[#D4AF37] text-[#080808] font-['Barlow_Condensed'] font-bold text-[8px] tracking-widest uppercase px-2 py-1">
-                      {car.badge}
-                    </span>
+            {displayVehicles.map((car) => {
+              // Use Airtable ID if available, otherwise use slug
+              const linkId = car.id || car.slug;
+              const linkPath = car.id ? `/vehicles/${car.id}` : `/rentals/${car.slug}`;
+              const carImage = car.image || car.images?.[0];
+              const carType = car.brand || car.type;
+              const carBadge = car.status || car.badge;
+
+              return (
+                <Link key={linkId} href={linkPath}>
+                  <div className="card-hover bg-[#0e0e0e] overflow-hidden group cursor-pointer">
+                    <div className="relative h-40 overflow-hidden">
+                      <img
+                        src={carImage}
+                        alt={car.name}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />
+                      <span className="absolute top-2 right-2 bg-[#D4AF37] text-[#080808] font-['Barlow_Condensed'] font-bold text-[8px] tracking-widest uppercase px-2 py-1">
+                        {carBadge}
+                      </span>
+                    </div>
+                    <div className="p-4">
+                      <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase mb-1">{carType}</p>
+                      <h4 className="font-['Barlow_Condensed'] font-bold text-sm uppercase text-white mb-3">{car.name}</h4>
+                      <span className="btn-gold text-xs px-3 py-2 flex items-center gap-1.5 w-full justify-center">
+                        View Details <ArrowRight size={10} />
+                      </span>
+                    </div>
                   </div>
-                  <div className="p-4">
-                    <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase mb-1">{car.type}</p>
-                    <h4 className="font-['Barlow_Condensed'] font-bold text-sm uppercase text-white mb-3">{car.name}</h4>
-                    <span className="btn-gold text-xs px-3 py-2 flex items-center gap-1.5 w-full justify-center">
-                      View Details <ArrowRight size={10} />
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
           </div>
 
           <div className="mt-10 text-center">
