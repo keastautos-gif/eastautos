@@ -49,3 +49,8 @@
 - [x] Move "Available" badge above brand name but below breadcrumb
 - [x] Remove short specs line from under vehicle title on detail page (keep specs in dedicated section below)
 - [x] Remove duplicate "Request Availability" heading/subtitle above the inquiry form on vehicle detail page
+- [x] Remove "Curated Selection / Our Network" section from Fleet page
+- [x] Add modern filter bar (brand filter) above vehicle cards
+- [x] Add sort options (Newest, Price Low/High, Brand A-Z, Most Popular)
+- [x] Mobile-optimized collapsible filters with touch-friendly UI
+- [x] Maintain black/gold luxury aesthetic on filter bar

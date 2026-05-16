@@ -2,27 +2,40 @@
    EASTAUTOS — Fleet Page (Refined)
    Broader inventory network, inquiry-focused,
    direct contact prioritization. Cards link to detail pages.
+   Filter + Sort bar for luxury marketplace feel.
    ============================================================ */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "wouter";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InquiryForm from "@/components/InquiryForm";
 import { trpc } from "@/lib/trpc";
-import { Phone, MessageCircle, ArrowRight, CheckCircle } from "lucide-react";
+import {
+  Phone, MessageCircle, ArrowRight, CheckCircle,
+  SlidersHorizontal, ChevronDown, X
+} from "lucide-react";
 
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/hero-rentals-gyjcZpNHvpKt2eUFsZr34P.webp";
+
+const SORT_OPTIONS = [
+  { value: "newest", label: "Newest First" },
+  { value: "price-low", label: "Price Low → High" },
+  { value: "price-high", label: "Price High → Low" },
+  { value: "brand-az", label: "Brand A → Z" },
+  { value: "popular", label: "Most Popular" },
+];
 
 export default function Rentals() {
   const { data: airtableVehicles = [] } = trpc.vehicles.getAvailable.useQuery();
   const [displayVehicles, setDisplayVehicles] = useState<any[]>([]);
+  const [selectedBrand, setSelectedBrand] = useState("All");
+  const [sortBy, setSortBy] = useState("newest");
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   useEffect(() => {
-    // Use Airtable vehicles if available, otherwise fall back to static data
     if (airtableVehicles.length > 0) {
       setDisplayVehicles(airtableVehicles);
     } else {
-      // Fallback to static data
       try {
         const { vehicles: staticVehicles } = require("@/data/vehicles");
         setDisplayVehicles(staticVehicles);
@@ -31,6 +44,56 @@ export default function Rentals() {
       }
     }
   }, [airtableVehicles]);
+
+  // Extract unique brands from vehicles
+  const brands = useMemo(() => {
+    const brandSet = new Set<string>();
+    displayVehicles.forEach((car) => {
+      const brand = car.brand || car.type || "";
+      if (brand) brandSet.add(brand);
+    });
+    return ["All", ...Array.from(brandSet).sort()];
+  }, [displayVehicles]);
+
+  // Filter and sort vehicles
+  const filteredVehicles = useMemo(() => {
+    let result = [...displayVehicles];
+
+    // Apply brand filter
+    if (selectedBrand !== "All") {
+      result = result.filter((car) => {
+        const brand = car.brand || car.type || "";
+        return brand === selectedBrand;
+      });
+    }
+
+    // Apply sorting
+    switch (sortBy) {
+      case "price-low":
+        result.sort((a, b) => (a.dailyRate || 0) - (b.dailyRate || 0));
+        break;
+      case "price-high":
+        result.sort((a, b) => (b.dailyRate || 0) - (a.dailyRate || 0));
+        break;
+      case "brand-az":
+        result.sort((a, b) => {
+          const brandA = (a.brand || a.type || "").toLowerCase();
+          const brandB = (b.brand || b.type || "").toLowerCase();
+          return brandA.localeCompare(brandB);
+        });
+        break;
+      case "popular":
+        // Sort by daily rate descending as a proxy for popularity
+        result.sort((a, b) => (b.dailyRate || 0) - (a.dailyRate || 0));
+        break;
+      case "newest":
+      default:
+        // Keep original order (newest from Airtable)
+        break;
+    }
+
+    return result;
+  }, [displayVehicles, selectedBrand, sortBy]);
 
   return (
     <div className="min-h-screen bg-[#080808] text-white overflow-x-hidden">
@@ -55,62 +118,195 @@ export default function Rentals() {
         </div>
       </section>
 
-      {/* ── FEATURED FLEET ── */}
-      <section className="py-20 bg-[#080808]">
+      {/* ── FILTER + SORT BAR ── */}
+      <section className="bg-[#080808] border-b border-[#1a1a1a]">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
-            <p className="section-label mb-3">Curated Selection</p>
-            <h2 className="font-['Barlow_Condensed'] font-extrabold text-4xl lg:text-5xl uppercase text-white">
-              Our Network
-            </h2>
-            <p className="text-white/40 font-['Barlow'] text-sm mt-3">Vehicles from our curated network. Click any vehicle for full details and to submit an inquiry. Additional inventory available upon request.</p>
+          {/* Desktop Filter Bar */}
+          <div className="hidden lg:flex items-center justify-between py-5">
+            {/* Brand Filters */}
+            <div className="flex items-center gap-2 flex-wrap">
+              {brands.map((brand) => (
+                <button
+                  key={brand}
+                  onClick={() => setSelectedBrand(brand)}
+                  className={`font-['Barlow_Condensed'] font-semibold text-xs tracking-[0.1em] uppercase px-4 py-2 border transition-all duration-300 ${
+                    selectedBrand === brand
+                      ? "bg-[#D4AF37] text-[#080808] border-[#D4AF37]"
+                      : "bg-transparent text-white/60 border-[#2a2a2a] hover:border-[#D4AF37]/50 hover:text-white"
+                  }`}
+                >
+                  {brand}
+                </button>
+              ))}
+            </div>
+
+            {/* Sort Dropdown */}
+            <div className="relative group">
+              <button className="flex items-center gap-2 font-['Barlow_Condensed'] font-semibold text-xs tracking-[0.1em] uppercase text-white/60 border border-[#2a2a2a] px-4 py-2 hover:border-[#D4AF37]/50 hover:text-white transition-all duration-300">
+                <SlidersHorizontal size={12} />
+                {SORT_OPTIONS.find((o) => o.value === sortBy)?.label}
+                <ChevronDown size={12} />
+              </button>
+              <div className="absolute right-0 top-full mt-1 bg-[#0e0e0e] border border-[#2a2a2a] min-w-[180px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                {SORT_OPTIONS.map((option) => (
+                  <button
+                    key={option.value}
+                    onClick={() => setSortBy(option.value)}
+                    className={`block w-full text-left font-['Barlow'] text-xs px-4 py-2.5 transition-colors ${
+                      sortBy === option.value
+                        ? "text-[#D4AF37] bg-[#D4AF37]/5"
+                        : "text-white/60 hover:text-white hover:bg-[#1a1a1a]"
+                    }`}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {displayVehicles.map((car) => {
-              // Use Airtable ID if available, otherwise use slug
-              const linkId = car.id || car.slug;
-              const linkPath = car.id ? `/vehicles/${car.id}` : `/rentals/${car.slug}`;
-              const carImage = car.image || car.images?.[0] || "";
-              const carType = car.brand || car.type || "Vehicle";
-              const carBadge = car.status || car.badge || "Available";
-              const carName = car.name || "Unknown Vehicle";
+          {/* Mobile Filter Bar */}
+          <div className="lg:hidden py-4">
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
+                className="flex-1 flex items-center justify-center gap-2 font-['Barlow_Condensed'] font-semibold text-xs tracking-[0.1em] uppercase text-white/80 border border-[#2a2a2a] px-4 py-3 hover:border-[#D4AF37]/50 transition-all"
+              >
+                <SlidersHorizontal size={14} />
+                Filter{selectedBrand !== "All" ? `: ${selectedBrand}` : ""}
+              </button>
+              <div className="relative">
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="appearance-none bg-transparent font-['Barlow_Condensed'] font-semibold text-xs tracking-[0.1em] uppercase text-white/80 border border-[#2a2a2a] px-4 py-3 pr-8 hover:border-[#D4AF37]/50 transition-all cursor-pointer"
+                >
+                  {SORT_OPTIONS.map((option) => (
+                    <option key={option.value} value={option.value} className="bg-[#0e0e0e] text-white">
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown size={12} className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" />
+              </div>
+            </div>
 
-              // Skip rendering if no image and no name
-              if (!carImage && !carName) return null;
-
-              return (
-                <Link key={linkId} href={linkPath}>
-                  <div className="card-hover bg-[#0e0e0e] overflow-hidden group cursor-pointer">
-                    <div className="relative h-40 overflow-hidden bg-[#1a1a1a]">
-                      {carImage ? (
-                        <img
-                          src={carImage}
-                          alt={carName}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-white/30">
-                          <span className="text-xs">No Image</span>
-                        </div>
-                      )}
-                      {carImage && <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />}
-                      <span className="absolute top-2 right-2 bg-[#D4AF37] text-[#080808] font-['Barlow_Condensed'] font-bold text-[8px] tracking-widest uppercase px-2 py-1">
-                        {carBadge}
-                      </span>
-                    </div>
-                    <div className="p-4">
-                      <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase mb-1">{carType}</p>
-                      <h4 className="font-['Barlow_Condensed'] font-bold text-sm uppercase text-white mb-3">{carName}</h4>
-                      <span className="btn-gold text-xs px-3 py-2 flex items-center gap-1.5 w-full justify-center">
-                        View Details <ArrowRight size={10} />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
+            {/* Mobile Filter Drawer */}
+            {mobileFiltersOpen && (
+              <div className="mt-3 bg-[#0e0e0e] border border-[#2a2a2a] p-4 animate-in slide-in-from-top-2">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="font-['Barlow_Condensed'] font-bold text-xs tracking-[0.15em] uppercase text-[#D4AF37]">
+                    Filter by Brand
+                  </span>
+                  <button
+                    onClick={() => setMobileFiltersOpen(false)}
+                    className="text-white/40 hover:text-white"
+                  >
+                    <X size={16} />
+                  </button>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {brands.map((brand) => (
+                    <button
+                      key={brand}
+                      onClick={() => {
+                        setSelectedBrand(brand);
+                        setMobileFiltersOpen(false);
+                      }}
+                      className={`font-['Barlow_Condensed'] font-semibold text-xs tracking-[0.1em] uppercase px-3 py-2 border transition-all duration-300 ${
+                        selectedBrand === brand
+                          ? "bg-[#D4AF37] text-[#080808] border-[#D4AF37]"
+                          : "bg-transparent text-white/60 border-[#2a2a2a] hover:border-[#D4AF37]/50 hover:text-white"
+                      }`}
+                    >
+                      {brand}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
+
+          {/* Results count */}
+          <div className="pb-4 flex items-center justify-between">
+            <span className="font-['Barlow'] text-xs text-white/40">
+              {filteredVehicles.length} vehicle{filteredVehicles.length !== 1 ? "s" : ""} available
+            </span>
+            {selectedBrand !== "All" && (
+              <button
+                onClick={() => setSelectedBrand("All")}
+                className="flex items-center gap-1 font-['Barlow'] text-xs text-[#D4AF37] hover:text-[#D4AF37]/80 transition-colors"
+              >
+                <X size={12} /> Clear filter
+              </button>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ── VEHICLE GRID ── */}
+      <section className="py-10 bg-[#080808]">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+          {filteredVehicles.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {filteredVehicles.map((car) => {
+                const linkId = car.id || car.slug;
+                const linkPath = car.id ? `/vehicles/${car.id}` : `/rentals/${car.slug}`;
+                const carImage = car.image || car.images?.[0] || "";
+                const carType = car.brand || car.type || "Vehicle";
+                const carBadge = car.status || car.badge || "Available";
+                const carName = car.name || "Unknown Vehicle";
+
+                if (!carImage && !carName) return null;
+
+                return (
+                  <Link key={linkId} href={linkPath}>
+                    <div className="card-hover bg-[#0e0e0e] overflow-hidden group cursor-pointer">
+                      <div className="relative h-40 overflow-hidden bg-[#1a1a1a]">
+                        {carImage ? (
+                          <img
+                            src={carImage}
+                            alt={carName}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-white/30">
+                            <span className="text-xs">No Image</span>
+                          </div>
+                        )}
+                        {carImage && <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />}
+                        <span className="absolute top-2 right-2 bg-[#D4AF37] text-[#080808] font-['Barlow_Condensed'] font-bold text-[8px] tracking-widest uppercase px-2 py-1">
+                          {carBadge}
+                        </span>
+                      </div>
+                      <div className="p-4">
+                        <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase mb-1">{carType}</p>
+                        <h4 className="font-['Barlow_Condensed'] font-bold text-sm uppercase text-white mb-3">{carName}</h4>
+                        <span className="btn-gold text-xs px-3 py-2 flex items-center gap-1.5 w-full justify-center">
+                          View Details <ArrowRight size={10} />
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <p className="font-['Barlow_Condensed'] font-bold text-xl uppercase text-white/40 mb-3">
+                No vehicles found
+              </p>
+              <p className="text-white/30 font-['Barlow'] text-sm mb-6">
+                Try adjusting your filters or contact us for specific requests.
+              </p>
+              <button
+                onClick={() => setSelectedBrand("All")}
+                className="btn-outline-gold text-sm px-6 py-2.5"
+              >
+                View All Vehicles
+              </button>
+            </div>
+          )}
 
           <div className="mt-10 text-center">
             <p className="text-white/40 font-['Barlow'] text-sm mb-4">Don't see what you need?</p>
