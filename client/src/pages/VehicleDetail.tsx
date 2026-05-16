@@ -3,7 +3,7 @@
    Premium detail view with swipeable photo gallery, breadcrumbs,
    and inquiry-based CTAs
    ============================================================ */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, Link, useLocation } from "wouter";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -22,6 +22,7 @@ export default function VehicleDetail() {
   const params = useParams<{ id: string }>();
   const [, setLocation] = useLocation();
   const [activeImage, setActiveImage] = useState(0);
+  const inquiryFormRef = useRef<HTMLDivElement>(null);
 
   // Try to fetch from Airtable first (if ID looks like an Airtable record ID)
   // Otherwise, it might be a legacy slug from static data
@@ -87,33 +88,55 @@ export default function VehicleDetail() {
     setActiveImage((prev) => (prev - 1 + photos.length) % photos.length);
   };
 
+  const scrollToInquiry = () => {
+    inquiryFormRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Extract specs from vehicle data (HP, seats, type, etc.)
+  const specs = [];
+  if (displayVehicle?.specs) specs.push(displayVehicle.specs);
+  if (displayVehicle?.type) specs.push(displayVehicle.type);
+  if (displayVehicle?.seats) specs.push(`${displayVehicle.seats} Seats`);
+  if (displayVehicle?.transmission) specs.push(displayVehicle.transmission);
+  const specsLine = specs.filter(Boolean).join(" • ");
+
   return (
     <div className="min-h-screen bg-[#080808] text-white overflow-x-hidden">
       <Navbar />
 
-      {/* ── BREADCRUMB ── */}
-      <div className="bg-[#0a0a0a] border-b border-[#1a1a1a]">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-3 mt-4">
-          <nav className="flex items-center gap-2 text-sm font-['Barlow'] text-white/50">
-            <Link href="/">
-              <span className="hover:text-white/70 cursor-pointer">Home</span>
-            </Link>
-            <span className="text-white/30">/</span>
-            <Link href="/rentals">
-              <span className="hover:text-white/70 cursor-pointer">
-                Fleet
-              </span>
-            </Link>
-            <span className="text-white/30">/</span>
-            <span className="text-white/70">{displayVehicle?.name}</span>
-          </nav>
-        </div>
-      </div>
-
-      {/* ── HERO GALLERY ── */}
+      {/* ── MAIN CONTENT ── */}
       <section className="bg-[#080808] py-8">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Brand & Title Section */}
+          <div className="mb-8">
+            <div className="flex items-center gap-2 mb-3">
+              <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase">
+                {displayVehicle?.brand || displayVehicle?.type}
+              </p>
+              {displayVehicle?.brand && (
+                <img
+                  src={`https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${displayVehicle.brand.toLowerCase().replace(/\s+/g, '')}.svg`}
+                  alt={displayVehicle.brand}
+                  className="w-4 h-4 opacity-70"
+                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                />
+              )}
+            </div>
+            <h1
+              className="font-['Barlow_Condensed'] font-black text-white uppercase leading-none mb-3"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
+            >
+              {displayVehicle?.name}
+            </h1>
+            {specsLine && (
+              <p className="text-white/60 font-['Barlow'] text-sm">
+                {specsLine}
+              </p>
+            )}
+          </div>
+
+          {/* Hero Image & Gallery */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
             {/* Main Gallery */}
             <div className="lg:col-span-2">
               <div className="relative aspect-[16/10] bg-[#0e0e0e] overflow-hidden mb-4">
@@ -145,18 +168,18 @@ export default function VehicleDetail() {
                     >
                       <ChevronRight size={20} className="text-white" />
                     </button>
-                  {photos.length > 0 && (
-                    <div className="absolute bottom-3 right-3 bg-black/70 px-3 py-1 font-['Barlow_Condensed'] text-xs tracking-wider text-white/70">
-                      {activeImage + 1} / {photos.length}
-                    </div>
-                  )}
+                    {photos.length > 0 && (
+                      <div className="absolute bottom-3 right-3 bg-black/70 px-3 py-1 font-['Barlow_Condensed'] text-xs tracking-wider text-white/70">
+                        {activeImage + 1} / {photos.length}
+                      </div>
+                    )}
                   </>
                 )}
               </div>
 
               {/* Thumbnails */}
               {photos && photos.length > 1 && (
-                <div className="grid grid-cols-4 gap-2 mt-4">
+                <div className="grid grid-cols-4 gap-2 mb-8">
                   {photos.filter(Boolean).map((photo: string, i: number) => (
                     <button
                       key={i}
@@ -176,62 +199,60 @@ export default function VehicleDetail() {
                   ))}
                 </div>
               )}
+
+              {/* Breadcrumb (below gallery) */}
+              <div className="bg-[#0a0a0a] border-t border-[#1a1a1a] -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-3">
+                <nav className="flex items-center gap-2 text-sm font-['Barlow'] text-white/50">
+                  <Link href="/">
+                    <span className="hover:text-white/70 cursor-pointer">Home</span>
+                  </Link>
+                  <span className="text-white/30">/</span>
+                  <Link href="/rentals">
+                    <span className="hover:text-white/70 cursor-pointer">Fleet</span>
+                  </Link>
+                  <span className="text-white/30">/</span>
+                  <span className="text-white/70">{displayVehicle?.name}</span>
+                </nav>
+              </div>
             </div>
 
-            {/* Details Sidebar */}
+            {/* Vehicle Info Sidebar */}
             <div className="flex flex-col justify-between">
               <div>
-                {/* Brand & Category */}
-                <div className="mb-8">
-                  <div className="flex items-center gap-2 mb-3">
-                    <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase">
-                      {displayVehicle?.brand || displayVehicle?.type}
-                    </p>
-                    {displayVehicle?.brand && (
-                      <img
-                        src={`https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${displayVehicle.brand.toLowerCase().replace(/\s+/g, '')}.svg`}
-                        alt={displayVehicle.brand}
-                        className="w-4 h-4 opacity-70"
-                        onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                      />
-                    )}
-                  </div>
-                  <h1
-                    className="font-['Barlow_Condensed'] font-black text-white uppercase leading-none mb-4"
-                    style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
-                  >
-                    {displayVehicle?.name}
-                  </h1>
-                </div>
-
                 {/* Status Badge */}
-                <div className="mb-8">
-                  {displayVehicle?.status && (
-                  <div
-                    className={`inline-block px-3 py-1.5 rounded-sm text-xs font-['Barlow_Condensed'] font-bold tracking-wider uppercase border ${
-                      displayVehicle.status === "Available"
-                        ? "bg-green-600/20 text-green-400 border-green-600/30"
-                        : displayVehicle.status === "Booked"
-                        ? "bg-amber-600/20 text-amber-400 border-amber-600/30"
-                        : displayVehicle.status === "Unavailable"
-                        ? "bg-red-600/20 text-red-400 border-red-600/30"
-                        : "bg-gray-600/20 text-gray-400 border-gray-600/30"
-                    }`}
-                  >
-                    {displayVehicle.status}
+                {displayVehicle?.status && (
+                  <div className="mb-6">
+                    <div
+                      className={`inline-block px-3 py-1.5 rounded-sm text-xs font-['Barlow_Condensed'] font-bold tracking-wider uppercase border ${
+                        displayVehicle.status === "Available"
+                          ? "bg-green-600/20 text-green-400 border-green-600/30"
+                          : displayVehicle.status === "Booked"
+                          ? "bg-amber-600/20 text-amber-400 border-amber-600/30"
+                          : displayVehicle.status === "Unavailable"
+                          ? "bg-red-600/20 text-red-400 border-red-600/30"
+                          : "bg-gray-600/20 text-gray-400 border-gray-600/30"
+                      }`}
+                    >
+                      {displayVehicle.status}
+                    </div>
                   </div>
                 )}
-                </div>
 
-                {/* Pricing */}
+                {/* Pricing & Request Button */}
                 <div className="mb-8 pb-8 border-b border-[#1a1a1a]">
                   <p className="text-white/50 font-['Barlow'] text-xs tracking-wider uppercase mb-2">
                     Estimated Daily Rate
                   </p>
-                  <p className="text-[#D4AF37] font-['Barlow_Condensed'] font-black text-3xl">
+                  <p className="text-[#D4AF37] font-['Barlow_Condensed'] font-black text-3xl mb-6">
                     ${(displayVehicle?.suggestedRate ?? displayVehicle?.price ?? 0).toLocaleString()}
                   </p>
-                  <p className="text-white/40 font-['Barlow'] text-xs mt-3">
+                  <button
+                    onClick={scrollToInquiry}
+                    className="btn-gold text-sm px-6 py-3 w-full flex items-center justify-center gap-2 mb-4"
+                  >
+                    Request Availability
+                  </button>
+                  <p className="text-white/40 font-['Barlow'] text-xs">
                     Availability confirmed after inquiry submission.
                   </p>
                 </div>
@@ -249,7 +270,7 @@ export default function VehicleDetail() {
                 )}
               </div>
 
-              {/* Quick Contact */}
+              {/* Quick Contact (Sticky Secondary Actions) */}
               <div className="space-y-3 pt-4">
                 <a href="tel:+19293866103" className="w-full">
                   <button className="btn-gold text-sm px-4 py-3 flex items-center justify-center gap-2 w-full">
@@ -268,7 +289,7 @@ export default function VehicleDetail() {
       </section>
 
       {/* ── INQUIRY FORM ── */}
-      <section className="py-24 bg-[#0a0a0a] border-t border-[#1a1a1a]">
+      <section ref={inquiryFormRef} className="py-24 bg-[#0a0a0a] border-t border-[#1a1a1a]">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto">
             <div className="mb-10 text-center">

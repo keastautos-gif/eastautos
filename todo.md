@@ -34,3 +34,10 @@
 - [x] Adjust mobile header spacing to prevent overlap with content
 - [x] Add manufacturer logos via Simple Icons CDN to vehicle detail pages
 - [x] Improve layout spacing on detail pages (breadcrumb, gallery, sidebar, inquiry form)
+- [x] Restructure vehicle detail page: brand/specs/hero/thumbnails/breadcrumb/info/pricing
+- [x] Add short specs line under vehicle title
+- [x] Move breadcrumb below thumbnail gallery
+- [x] Replace "Book Now" with "Request Availability" throughout
+- [x] Add gold "Request Availability" button near pricing section
+- [x] Keep Call Now and Text Now as sticky secondary actions
+- [x] Ensure no overlap with Eastautos header on mobile
