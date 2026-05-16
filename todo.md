@@ -41,3 +41,6 @@
 - [x] Add gold "Request Availability" button near pricing section
 - [x] Keep Call Now and Text Now as sticky secondary actions
 - [x] Ensure no overlap with Eastautos header on mobile
+- [x] Add luxury vehicle descriptions to every vehicle detail page
+- [x] Add performance specs section to every vehicle detail page
+- [x] Add vehicle-specific FAQs to every vehicle detail page

@@ -1,32 +1,38 @@
 /* ============================================================
    EASTAUTOS — Vehicle Detail Page (Airtable-Powered)
-   Premium detail view with swipeable photo gallery, breadcrumbs,
-   and inquiry-based CTAs
+   Premium detail view with swipeable photo gallery, performance
+   specs, luxury descriptions, FAQs, and inquiry-based CTAs
    ============================================================ */
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { useParams, Link, useLocation } from "wouter";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InquiryForm from "@/components/InquiryForm";
 import { trpc } from "@/lib/trpc";
 import {
+  getVehicleContent,
+  getGenericVehicleContent,
+} from "@/data/vehicleContent";
+import {
   Phone,
   MessageCircle,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   AlertCircle,
   Loader2,
+  Gauge,
 } from "lucide-react";
 
 export default function VehicleDetail() {
   const params = useParams<{ id: string }>();
   const [, setLocation] = useLocation();
   const [activeImage, setActiveImage] = useState(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const inquiryFormRef = useRef<HTMLDivElement>(null);
 
   // Try to fetch from Airtable first (if ID looks like an Airtable record ID)
-  // Otherwise, it might be a legacy slug from static data
-  const isAirtableId = params.id && params.id.length > 10; // Airtable IDs are typically long
+  const isAirtableId = params.id && params.id.length > 10;
   const shouldFetchAirtable = isAirtableId && !!params.id;
   const { data: vehicle, isLoading, error } = shouldFetchAirtable
     ? trpc.vehicles.getById.useQuery({ id: params.id! })
@@ -92,13 +98,12 @@ export default function VehicleDetail() {
     inquiryFormRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Extract specs from vehicle data (HP, seats, type, etc.)
-  const specs = [];
-  if (displayVehicle?.specs) specs.push(displayVehicle.specs);
-  if (displayVehicle?.type) specs.push(displayVehicle.type);
-  if (displayVehicle?.seats) specs.push(`${displayVehicle.seats} Seats`);
-  if (displayVehicle?.transmission) specs.push(displayVehicle.transmission);
-  const specsLine = specs.filter(Boolean).join(" • ");
+  // Get curated content (description, specs, FAQs)
+  const vehicleName = displayVehicle?.name || "";
+  const vehicleBrand = displayVehicle?.brand || "";
+  const content =
+    getVehicleContent(vehicleName) ||
+    getGenericVehicleContent(vehicleName, vehicleBrand);
 
   return (
     <div className="min-h-screen bg-[#080808] text-white overflow-x-hidden">
@@ -128,14 +133,15 @@ export default function VehicleDetail() {
             >
               {displayVehicle?.name}
             </h1>
-            {specsLine && (
-              <p className="text-white/60 font-['Barlow'] text-sm">
-                {specsLine}
+            {/* Short specs line */}
+            {content.specs.length > 0 && (
+              <p className="text-white/50 font-['Barlow'] text-sm">
+                {content.specs.slice(0, 4).map((s) => s.value).join(" • ")}
               </p>
             )}
           </div>
 
-          {/* Hero Image & Gallery */}
+          {/* Hero Image & Gallery + Sidebar */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
             {/* Main Gallery */}
             <div className="lg:col-span-2">
@@ -179,7 +185,7 @@ export default function VehicleDetail() {
 
               {/* Thumbnails */}
               {photos && photos.length > 1 && (
-                <div className="grid grid-cols-4 gap-2 mb-8">
+                <div className="grid grid-cols-4 gap-2 mb-6">
                   {photos.filter(Boolean).map((photo: string, i: number) => (
                     <button
                       key={i}
@@ -201,19 +207,17 @@ export default function VehicleDetail() {
               )}
 
               {/* Breadcrumb (below gallery) */}
-              <div className="bg-[#0a0a0a] border-t border-[#1a1a1a] -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-3">
-                <nav className="flex items-center gap-2 text-sm font-['Barlow'] text-white/50">
-                  <Link href="/">
-                    <span className="hover:text-white/70 cursor-pointer">Home</span>
-                  </Link>
-                  <span className="text-white/30">/</span>
-                  <Link href="/rentals">
-                    <span className="hover:text-white/70 cursor-pointer">Fleet</span>
-                  </Link>
-                  <span className="text-white/30">/</span>
-                  <span className="text-white/70">{displayVehicle?.name}</span>
-                </nav>
-              </div>
+              <nav className="flex items-center gap-2 text-sm font-['Barlow'] text-white/50 py-3 border-t border-[#1a1a1a]">
+                <Link href="/">
+                  <span className="hover:text-white/70 cursor-pointer">Home</span>
+                </Link>
+                <span className="text-white/30">/</span>
+                <Link href="/rentals">
+                  <span className="hover:text-white/70 cursor-pointer">Fleet</span>
+                </Link>
+                <span className="text-white/30">/</span>
+                <span className="text-white/70">{displayVehicle?.name}</span>
+              </nav>
             </div>
 
             {/* Vehicle Info Sidebar */}
@@ -288,8 +292,102 @@ export default function VehicleDetail() {
         </div>
       </section>
 
+      {/* ── VEHICLE DESCRIPTION ── */}
+      <section className="py-16 bg-[#0a0a0a] border-t border-[#1a1a1a]">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase mb-4">
+              About This Vehicle
+            </p>
+            <h2 className="font-['Barlow_Condensed'] font-extrabold text-2xl lg:text-3xl uppercase text-white mb-6">
+              {displayVehicle?.name}
+            </h2>
+            <p className="text-white/60 font-['Barlow'] text-sm lg:text-base leading-relaxed">
+              {content.description}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── PERFORMANCE SPECS ── */}
+      {content.specs.length > 0 && (
+        <section className="py-16 bg-[#080808] border-t border-[#1a1a1a]">
+          <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center gap-3 mb-8">
+              <Gauge size={18} className="text-[#D4AF37]" />
+              <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase">
+                Performance Specifications
+              </p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {content.specs.map((spec, i) => (
+                <div
+                  key={i}
+                  className="bg-[#0e0e0e] border border-[#1a1a1a] p-5"
+                >
+                  <p className="text-white/40 font-['Barlow'] text-xs tracking-wider uppercase mb-2">
+                    {spec.label}
+                  </p>
+                  <p className="text-white font-['Barlow_Condensed'] font-bold text-sm lg:text-base">
+                    {spec.value}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── VEHICLE FAQs ── */}
+      {content.faqs.length > 0 && (
+        <section className="py-16 bg-[#0a0a0a] border-t border-[#1a1a1a]">
+          <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase mb-4">
+                Frequently Asked Questions
+              </p>
+              <h2 className="font-['Barlow_Condensed'] font-extrabold text-2xl lg:text-3xl uppercase text-white mb-8">
+                {displayVehicle?.name} — FAQs
+              </h2>
+              <div className="space-y-3">
+                {content.faqs.map((faq, i) => (
+                  <div
+                    key={i}
+                    className="bg-[#0e0e0e] border border-[#1a1a1a] overflow-hidden"
+                  >
+                    <button
+                      onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                      className="w-full flex items-center justify-between px-6 py-4 text-left"
+                    >
+                      <span className="text-white font-['Barlow'] text-sm font-medium pr-4">
+                        {faq.question}
+                      </span>
+                      <ChevronDown
+                        size={16}
+                        className={`text-[#D4AF37] shrink-0 transition-transform duration-300 ${
+                          openFaq === i ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ${
+                        openFaq === i ? "max-h-60 pb-5" : "max-h-0"
+                      }`}
+                    >
+                      <p className="text-white/50 font-['Barlow'] text-sm leading-relaxed px-6">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ── INQUIRY FORM ── */}
-      <section ref={inquiryFormRef} className="py-24 bg-[#0a0a0a] border-t border-[#1a1a1a]">
+      <section ref={inquiryFormRef} className="py-24 bg-[#080808] border-t border-[#1a1a1a]">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto">
             <div className="mb-10 text-center">
