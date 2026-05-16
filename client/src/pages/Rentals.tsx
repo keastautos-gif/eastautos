@@ -1,6 +1,6 @@
 /* ============================================================
-   EASTAUTOS — Rentals Page (Refined)
-   Access-first: Limited featured fleet, inquiry-focused,
+   EASTAUTOS — Fleet Page (Refined)
+   Broader inventory network, inquiry-focused,
    direct contact prioritization. Cards link to detail pages.
    ============================================================ */
 import { Link } from "wouter";
@@ -26,10 +26,10 @@ export default function Rentals() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/50 to-[#080808]/10" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/70 via-transparent to-transparent" />
         <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <p className="section-label mb-3">Premium Rentals</p>
+          <p className="section-label mb-3">Our Inventory</p>
           <h1 className="font-['Barlow_Condensed'] font-black text-white uppercase leading-none"
             style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}>
-            Rent a Luxury<br />Vehicle
+            Eastautos<br />Fleet
           </h1>
           <p className="text-white/60 font-['Barlow'] text-sm mt-3 max-w-lg">
             Exclusive access to supercars, luxury sedans, and premium SUVs. Limited availability. By appointment only.

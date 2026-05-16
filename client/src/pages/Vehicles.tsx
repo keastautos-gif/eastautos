@@ -1,7 +1,7 @@
 /* ============================================================
-   EASTAUTOS — Vehicles Page
+   EASTAUTOS — Rent a Car Page
    Live inventory from Airtable Cars table
-   Displays vehicles with real-time availability status
+   Displays currently available vehicles with real-time status
    ============================================================ */
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
@@ -138,13 +138,13 @@ export default function Vehicles() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/50 to-[#080808]/10" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/70 via-transparent to-transparent" />
         <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <p className="section-label mb-3">Live Inventory</p>
+          <p className="section-label mb-3">Available Now</p>
           <h1
             className="font-['Barlow_Condensed'] font-black text-white uppercase leading-none"
             style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
           >
-            Available<br />
-            Vehicles
+            Rent a<br />
+            Luxury Vehicle
           </h1>
           <p className="text-white/60 font-['Barlow'] text-sm mt-3 max-w-lg">
             Real-time availability from our curated network. Status updates instantly as vehicles are booked.
