@@ -263,10 +263,7 @@ export default function Chauffeur() {
               </div>
             </div>
             <div className="bg-[#0e0e0e] border border-[#1a1a1a] p-8 lg:p-10">
-              <InquiryForm
-                title="Luxury Concierge Request"
-                subtitle="Eastautos will confirm availability, pricing, and delivery options after submission."
-              />
+              <InquiryForm />
             </div>
           </div>
         </div>

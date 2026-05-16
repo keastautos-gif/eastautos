@@ -36,8 +36,8 @@ const contactInfo = [
   {
     icon: MapPin,
     label: "Service Areas",
-    value: "NY • CT • NJ • Miami • LA",
-    sub: "Nationwide delivery available",
+    value: "NY • CT • NJ",
+    sub: "Tri-State luxury vehicle access",
     href: "#",
   },
 ];
@@ -192,8 +192,8 @@ export default function Contact() {
             {/* Right: Form */}
             <div className="bg-[#0e0e0e] border border-[#1a1a1a] p-8 lg:p-10">
               <InquiryForm
-                title="Luxury Concierge Request"
-                subtitle="Eastautos will confirm availability, pricing, and delivery options after submission."
+                title="Request Availability"
+                subtitle="Tell us what you're looking for. We'll confirm availability, pricing, and next steps within 24 hours."
                 prefilledVehicle={prefilledVehicle}
               />
             </div>

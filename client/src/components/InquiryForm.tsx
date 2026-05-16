@@ -37,8 +37,8 @@ const OCCASIONS = [
 ];
 
 export default function InquiryForm({
-  title = "Luxury Concierge Request",
-  subtitle = "Eastautos will confirm availability, pricing, and delivery options after submission.",
+  title = "Request Availability",
+  subtitle = "Tell us what you're looking for. We'll confirm availability, pricing, and next steps within 24 hours.",
   prefilledVehicle = "",
 }: InquiryFormProps) {
   const [submitted, setSubmitted] = useState(false);
@@ -111,7 +111,7 @@ export default function InquiryForm({
           Request Received
         </h3>
         <p className="text-white/50 font-['Barlow'] text-sm max-w-md">
-          Thank you, {form.name}. Our concierge team will contact you within 24 hours to confirm availability and discuss your options.
+          Thank you, {form.name}. We'll contact you within 24 hours to confirm availability and discuss your options.
         </p>
         <button
           onClick={() => setSubmitted(false)}
@@ -126,8 +126,7 @@ export default function InquiryForm({
   return (
     <div>
       <div className="mb-6">
-        <p className="section-label mb-2">Request Availability</p>
-        <h2 className="font-['Barlow_Condensed'] font-extrabold text-2xl lg:text-3xl uppercase tracking-wide text-white mb-1">
+        <h2 className="font-['Barlow_Condensed'] font-extrabold text-2xl lg:text-3xl uppercase tracking-wide text-white mb-2">
           {title}
         </h2>
         <p className="text-white/50 font-['Barlow'] text-xs">{subtitle}</p>

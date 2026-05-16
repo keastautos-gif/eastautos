@@ -155,7 +155,7 @@ export default function SellTrade() {
             <div className="bg-[#0e0e0e] border border-[#1a1a1a] p-8 lg:p-10">
               <InquiryForm
                 title="Get Your Valuation"
-                subtitle="Free offer within 24 hours. Our concierge team responds within 24 hours."
+                subtitle="Free valuation within 24 hours. We'll contact you with your offer and next steps."
               />
             </div>
           </div>
