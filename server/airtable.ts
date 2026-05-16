@@ -13,6 +13,25 @@ export interface AirtableVehicle {
 }
 
 /**
+ * Extract vehicle name from Car ID, removing color suffix
+ * e.g., "BMW M4 Comp (Grey)" -> "BMW M4 Comp"
+ */
+function extractVehicleName(carId: string): string {
+  return carId.replace(/\s*\([^)]*\)\s*$/, "").trim();
+}
+
+/**
+ * Extract first image URL from Car Photo attachment array
+ */
+function extractImageUrl(carPhotos: unknown): string {
+  if (Array.isArray(carPhotos) && carPhotos.length > 0) {
+    const photo = carPhotos[0] as { url?: string };
+    return photo.url || "";
+  }
+  return "";
+}
+
+/**
  * Fetch all vehicles from Airtable Cars table
  * Filters to only include vehicles where "Show On Website" is checked
  */
@@ -50,11 +69,11 @@ export async function getAirtableVehicles(): Promise<AirtableVehicle[]> {
       const status = (record.fields["Status"] as string) || "Unavailable";
       return {
         id: record.id,
-        name: (record.fields["Vehicle Name"] as string) || "",
-        brand: (record.fields["Brand"] as string) || "",
+        name: extractVehicleName((record.fields["Car ID"] as string) || ""),
+        brand: (record.fields["Car Model"] as string) || "",
         status: (status === "Available" || status === "Booked" || status === "Unavailable" ? status : "Unavailable") as "Available" | "Booked" | "Unavailable",
         dailyRate: (record.fields["Daily Rate"] as number) || 0,
-        image: (record.fields["Vehicle Image"] as string) || "",
+        image: extractImageUrl(record.fields["Car Photo"]),
         showOnWebsite: (record.fields["Show On Website"] as boolean) || false,
         location: (record.fields["Location"] as string) || "",
         inquiryLink: (record.fields["Inquiry Link"] as string) || "",
