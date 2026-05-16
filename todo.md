@@ -61,3 +61,7 @@
 - [x] Refine AVAILABLE badge positioning and styling
 - [x] Mobile optimize upgraded cards
 - [x] Fix "Vehicle Not Found" error: audit and fix all vehicle card links on Rent a Car page
+- [x] Sync homepage "Currently Available" section with Airtable data (same as Rent a Car page)
+- [x] Fix CTA buttons: "View Vehicle" should route to detail page, "Request Availability" to inquiry form
+- [x] Remove scroll-to-section behavior from vehicle CTAs
+- [x] Verify all vehicle card routes work across homepage, Rent a Car, and Fleet pages

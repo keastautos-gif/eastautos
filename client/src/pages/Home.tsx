@@ -7,8 +7,9 @@ import { Link } from "wouter";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InquiryForm from "@/components/InquiryForm";
+import { trpc } from "@/lib/trpc";
 import {
-  Car, Key, ArrowRightLeft, Phone, MessageCircle, ArrowRight, CheckCircle, ThumbsUp, Lock, Instagram
+  Car, Key, ArrowRightLeft, Phone, MessageCircle, ArrowRight, CheckCircle, ThumbsUp, Lock, Instagram, Loader2
 } from "lucide-react";
 
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/hero-cleaned_99f685c2.png";
@@ -34,34 +35,13 @@ const services = [
   },
 ];
 
-const featuredRentals = [
-  {
-    name: "Corvette C8 E-Ray",
-    type: "American Supercar",
-    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0341_f74bbf19.WEBP",
-    badge: "Available Now",
-  },
-  {
-    name: "Ferrari Roma",
-    type: "Sports Car",
-    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0462_5b55d064.WEBP",
-    badge: "Available Now",
-  },
-  {
-    name: "Mercedes-Benz S580",
-    type: "Ultra Luxury Sedan",
-    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0469_9bbb10a8.WEBP",
-    badge: "Available Now",
-  },
-  {
-    name: "Mercedes-Maybach GLS 600",
-    type: "Ultra Luxury SUV",
-    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663491125776/9PUjxLiqBNTsZ9XadNwzZw/IMG_0194_c945f855.WEBP",
-    badge: "Available Now",
-  },
-];
+
 
 export default function Home() {
+  const { data: airtableVehicles = [], isLoading: vehiclesLoading } = trpc.vehicles.getAvailable.useQuery();
+
+  // Show up to 4 featured vehicles from Airtable
+  const featuredVehicles = airtableVehicles.slice(0, 4);
 
   return (
     <div className="min-h-screen bg-[#080808] text-white overflow-x-hidden">
@@ -175,7 +155,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── FEATURED RENTALS (LIMITED) ── */}
+      {/* ── FEATURED RENTALS (AIRTABLE-POWERED) ── */}
       <section className="py-20 bg-[#0a0a0a] border-t border-[#1a1a1a]">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
@@ -188,35 +168,56 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {featuredRentals.map((car) => (
-              <div key={car.name} className="card-hover bg-[#0e0e0e] overflow-hidden group">
-                <div className="relative h-40 overflow-hidden">
-                  <img
-                    src={car.img}
-                    alt={car.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />
-                  <span className="absolute top-2 right-2 bg-[#D4AF37] text-[#080808] font-['Barlow_Condensed'] font-bold text-[9px] tracking-widest uppercase px-2 py-1">
-                    {car.badge}
-                  </span>
-                </div>
-                <div className="p-4">
-                  <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase mb-1">{car.type}</p>
-                  <h4 className="font-['Barlow_Condensed'] font-bold text-sm uppercase text-white">{car.name}</h4>
-                </div>
-              </div>
-            ))}
-          </div>
+          {vehiclesLoading ? (
+            <div className="flex justify-center py-16">
+              <Loader2 className="w-8 h-8 text-[#D4AF37] animate-spin" />
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {featuredVehicles.map((vehicle: any) => {
+                const mainImg = vehicle.images?.[0]?.url || vehicle.images?.[0];
+                const brand = (vehicle.brand || vehicle.manufacturer || "").trim();
+                return (
+                  <Link key={vehicle.id} href={`/vehicles/${vehicle.id}`}>
+                    <div className="card-hover bg-[#0e0e0e] overflow-hidden group cursor-pointer">
+                      <div className="relative h-40 overflow-hidden">
+                        {mainImg && (
+                          <img
+                            src={mainImg}
+                            alt={vehicle.name}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />
+                        {vehicle.status && (
+                          <span className="absolute top-2 right-2 bg-[#D4AF37] text-[#080808] font-['Barlow_Condensed'] font-bold text-[9px] tracking-widest uppercase px-2 py-1">
+                            {vehicle.status}
+                          </span>
+                        )}
+                      </div>
+                      <div className="p-4">
+                        {brand && (
+                          <p className="text-[#D4AF37] font-['Barlow_Condensed'] text-xs tracking-[0.15em] uppercase mb-1">{brand}</p>
+                        )}
+                        <h4 className="font-['Barlow_Condensed'] font-bold text-sm uppercase text-white">{vehicle.name}</h4>
+                        {vehicle.suggestedRate && (
+                          <p className="text-white/50 font-['Barlow'] text-xs mt-1">${vehicle.suggestedRate}/day</p>
+                        )}
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
 
           <div className="mt-10 text-center">
             <p className="text-white/40 font-['Barlow'] text-sm mb-4">More vehicles available through our network.</p>
-            <a href="#inquiry">
+            <Link href="/rentals">
               <button className="btn-outline-gold text-sm px-8 py-3">
                 View All Available Vehicles
               </button>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
