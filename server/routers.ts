@@ -30,6 +30,7 @@ import {
 import { notifyOwner } from "./_core/notification";
 import { sendSmsAlert } from "./sms";
 import { getAirtableVehicles } from "./airtable";
+import { createAirtableLead } from "./airtable-leads";
 
 export const appRouter = router({
   system: systemRouter,
@@ -90,6 +91,16 @@ export const appRouter = router({
 
           const smsText = lines.join("\n");
           await sendSmsAlert(smsText);
+
+          // Sync lead to Airtable Leads table
+          await createAirtableLead({
+            fullName: input.name,
+            phoneNumber: input.phone,
+            vehicleRequested: input.vehicleInterest || undefined,
+            message: input.additionalInfo || undefined,
+            leadSource: "Website",
+            leadStatus: "New Inquiry",
+          });
 
           return {
             success: true,
